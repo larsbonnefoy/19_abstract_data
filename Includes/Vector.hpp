@@ -118,7 +118,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * @returns Maximum number of elements 
      */
     size_type max_size(void) const {
-        return (std::numeric_limits<difference_type>::max());
+        return (_alloc.max_size());
     }
 
     /**

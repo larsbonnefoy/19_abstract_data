@@ -38,11 +38,11 @@ int main (int argc, char *argv[])
     }
     */
 
-    std::vector<int> v2(100, 1); 
-    v2.push_back(123123123);
-    std::cout << v2.front() << std::endl;
+    std::vector<int> v2; 
+    std::cout << v2.max_size() << std::endl;
 
     /////////////////////////////////
-    //ft::vector<int> v2;
+    ft::vector<int> ownv2;
+    std::cout << ownv2.max_size() << std::endl;
     return 0;
 }
