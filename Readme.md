@@ -1,6 +1,6 @@
 ### Project Summary
 
-The project involves implementing a section of the C++ containers from the standard template library, aligning with the C++98 standard while reflecting the structure of each standard container. The Orthodox Canonical form should be followed, excluding any missing components.
+The project involves implementing a section of the C++ containers from the standard template library, aligning with the C++98 standard while reflecting the structure of each standard container.
 
 #### Sequence Containers
 - **list**
