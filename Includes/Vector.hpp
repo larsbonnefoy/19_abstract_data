@@ -24,31 +24,10 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         size_type       _size;
         size_type       _capacity;
 
-        /**
-         * Returns most significant bit of number n  
-         * Used to get the next power closet power of 2 bigger than n to 
-         * pre-allocate memory in power of 2 blocks.
-         *
-         * @param n - number to find msb
-         *
-         * @returns size_type equivalent to the msb position
-         */
-        size_type msb(size_type n) {
-            size_type count = 0;
-            if (n == 0) {
-                return 0;
-            }
-            while (n != 0) {
-                n = n / 2;
-                count++;
-            }
-            return count;
-        }
-
     public:
 
         /**
-         * Constructs an empty container
+         * Constructs an empty container\n
          * Complexity: Constant 
          *
          * @param none
@@ -59,7 +38,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         }
 
         /**
-         * Constructs an empty container with the given allocator alloc
+         * Constructs an empty container with the given allocator alloc\n
          * Complexity: Constant 
          *
          * @param alloc - allocator used for memory allocation of this container
@@ -70,7 +49,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         }
         
         /**
-         * Constructs the container with count copies of elements with value value
+         * Constructs the container with count copies of elements with value value\n
          * Complexity: Linear in count 
          *
          * @param count - size of the container
@@ -88,7 +67,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
 
         /**
          * Copy constructor. 
-         * Constructs the container with the copy if the contents of other.
+         * Constructs the container with the copy if the contents of other.\n
          * Complexity: Linear in size of other 
          *
          * @param other another container to be used as source to initialize elements of the container
@@ -96,6 +75,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
          * @return initialized vector
          */
         vector( const vector& other ) {
+            (void) other;
         }
 
         /**
@@ -116,7 +96,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
 
 
         //TODO check if use Iterator to fill in the container
-        //TODO USE std::allocator.construct()?
+        //TODO USE std::allocator.construct() instead of = ?
         /**
          * Replaces the contents with count copies of value.\n
          * Complexity: Linear in count
@@ -141,8 +121,55 @@ template<class T,class Allocator = std::allocator<T> > class vector {
          */
 
     /****************************Element access********************************/
-    //at
-    //operator[]
+    //TODO write correct exception
+    /**
+     * Returns a reference to the element at specified location pos, with bound
+     * checking.\n
+     *
+     * @param pos -  Index of wanted element
+     *
+     * @returns reference to specified element
+     *
+     * @throws ft::out_of_range if pos is not within the range of the container 
+     */
+    reference at(size_type pos) {
+        if (pos + 1 > _size) {
+            throw std::exception();
+        }
+        return (_data[pos]);
+    }
+
+    //TODO write correct exception
+    /**
+     * Returns a const reference to the element at specified location pos, with 
+     * bound checking.\n
+     *
+     * @param pos -  Index of wanted element
+     *
+     * @returns const reference to specified element
+     *
+     * @throws ft::out_of_range if pos is not within the range of the container 
+     */
+    const_reference at(size_type pos) const {
+        if (pos + 1 > _size) {
+            throw std::exception();
+        }
+        return (_data[pos]);
+    }
+
+    /**
+     * Returns a const reference to the element at specified index pos, without
+     * bound checking.\n
+     *
+     * @param pos -  Index of wanted element
+     *
+     * @returns const reference to specified element
+     *
+     * @remark Access out of bond element results in undefined behaviour
+     */
+    reference operator[](size_type pos) {
+        return (_data[pos]);
+    }
 
     /**
      * Returns reference to first element of container
@@ -244,11 +271,13 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         return (_allocator.max_size());
     }
 
+    //TODO: write correct exception
     /**
      * Requests that _capacity should at least contain new_cap elements.\n
      * If new_cap is greater than current vector _capacity, function causes 
      * container to reallocate  increasing capacity to new_cap.\n
-     * Complexity: if realloc happens, linear in vector_size at most\n
+     * Reallocates by a factor of 2. (In more modern implementation this factor is 1.5).\n
+     * Complexity: if realloc happens, linear in vector_size at most.\n
      *
      * @param new_cap - new capacity of the vector, in number of elements
      *
@@ -256,19 +285,20 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      *
      * @throws length_error - exception is size requested is greater than vector::max_size
      * @throws bad_allocator -  if reallocation fails due to lack of space (when default alloc is used) 
+     *
+     * @remark Usefull if number of elements is known in advance. Can allocate 
+     * withouth instanciation right amount of data, eleminates need to reallocate when vector grows
      */
     void reserve(size_type new_cap) {
-        //TODO: write correct exception
         if (new_cap > this->max_size()) {
             throw std::exception();
         }
         //need to reallocate space
         //TODO: probably better way to copy data over
-        //BUG: when constructing for the first time _data = 0x0
         if (new_cap > _capacity) {
             size_type oldCapacity = _capacity;
-            _capacity = new_cap;
-            pointer newData = _allocator.allocate(new_cap); //need power superior power of 2 of new capacity
+            _capacity = (2 * _capacity > this->max_size()) ? max_size() : 2 * _capacity;
+            pointer newData = _allocator.allocate(_capacity); 
             for (size_type i = 0; i < _size; i++) {
                 _allocator.construct(&newData[i], _data[i]);
             }
@@ -291,7 +321,25 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         return (_capacity);
     }
     /***************************Modifiers**************************************/
-    //clear 
+    /**
+     * Erases all the elements of the container, each element is destroyed.\n
+     * Leaves container with a size of 0.\n
+     * Leaves capacity unchanged.\n
+     *
+     * @param none
+     *
+     * @return none
+     * 
+     * @remark Complexity linear in size of container
+     * @remark Invalidates any reference, pointer or iterator reffering to the 
+     * contained elements
+     */
+    void clear( void ) {
+        for (size_type i = 0; i < _size; i++) {
+            _allocator.destroy(&_data[i]);
+        }
+        _size = 0;
+    }
     //insert
     //erase 
     //push_back

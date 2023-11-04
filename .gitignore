@@ -1,3 +1,5 @@
 *.o
+.DS_store
+a.out.dSYM
 abstract_data.pdf
 a.out
