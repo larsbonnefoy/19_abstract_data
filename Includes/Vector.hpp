@@ -96,7 +96,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
 
 
         //TODO check if use Iterator to fill in the container
-        //TODO USE std::allocator.construct() instead of = ?
+        //reallocation if to many values are copied
         /**
          * Replaces the contents with count copies of value.\n
          * Complexity: Linear in count
@@ -109,11 +109,11 @@ template<class T,class Allocator = std::allocator<T> > class vector {
          */
         void assign( size_type count, const T& value ) {
             for (size_type i = 0; i < count; i++) {
-                _data[i] = value;
+                _allocator.construct(&_data[i], value);
             }
         }
 
-        /*
+        /*//TODO 
         template< class InputIt >
         void assign( InputIt first, InputIt last ) {
 
@@ -272,11 +272,11 @@ template<class T,class Allocator = std::allocator<T> > class vector {
     }
 
     //TODO: write correct exception
+    //TODO: probably better way to copy data over
     /**
      * Requests that _capacity should at least contain new_cap elements.\n
      * If new_cap is greater than current vector _capacity, function causes 
      * container to reallocate  increasing capacity to new_cap.\n
-     * Reallocates by a factor of 2. (In more modern implementation this factor is 1.5).\n
      * Complexity: if realloc happens, linear in vector_size at most.\n
      *
      * @param new_cap - new capacity of the vector, in number of elements
@@ -288,17 +288,15 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      *
      * @remark Usefull if number of elements is known in advance. Can allocate 
      * withouth instanciation right amount of data, eleminates need to reallocate when vector grows
+     * @remark If an error is thrown, leaves vector in his previous state
      */
     void reserve(size_type new_cap) {
         if (new_cap > this->max_size()) {
             throw std::exception();
         }
-        //need to reallocate space
-        //TODO: probably better way to copy data over
         if (new_cap > _capacity) {
             size_type oldCapacity = _capacity;
-            _capacity = (2 * _capacity > this->max_size()) ? max_size() : 2 * _capacity;
-            pointer newData = _allocator.allocate(_capacity); 
+            pointer newData = _allocator.allocate(new_cap); 
             for (size_type i = 0; i < _size; i++) {
                 _allocator.construct(&newData[i], _data[i]);
             }
@@ -307,6 +305,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
             }
             _allocator.deallocate(_data, oldCapacity);
             _data = newData;
+            _capacity = new_cap;
         }
     }
 
@@ -340,9 +339,35 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         }
         _size = 0;
     }
+
     //insert
     //erase 
-    //push_back
+
+    /**
+     * Adds new element at the end of vector.\n
+     * New element is initialized as a copy of value.\n
+     * If new size is bigger than previous capacity, reallocation takes place.\n
+     * Reallocates by a factor of 2. (In more modern implementation this factor is 1.5).\n
+     *
+     * @param value - the value of the element to append
+     *
+     * @returns none
+     *
+     * @throws exception related to allocator or element copy/move constructor/assignment.
+     *
+     * @remark Complexity: Amortized constant //TODO: check why Amortized
+     * @remark If reallocation happens, all references, pointers or iterators 
+     * related to the underlying data are invalidated
+     * @remark If an error is thrown this function has no effect (= strong exception
+     * guarantee) 
+     */
+    void push_back(const_reference value) {
+        if (_size + 1 > _capacity) {
+            reserve(_capacity * 2);
+        }
+        _allocator.construct(&_data[_size], value);
+        _size += 1;
+    }
     //pop_back 
     //rezise 
     //swap
