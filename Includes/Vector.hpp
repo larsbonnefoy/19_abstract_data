@@ -96,7 +96,6 @@ template<class T,class Allocator = std::allocator<T> > class vector {
 
 
         //TODO check if use Iterator to fill in the container
-        //reallocation if to many values are copied
         /**
          * Replaces the contents with count copies of value.\n
          * Complexity: Linear in count
@@ -106,8 +105,13 @@ template<class T,class Allocator = std::allocator<T> > class vector {
          *
          * @return none
          *
+         * @remark If count > capacity, reallocation takes place but values are 
+         * overridden.
+         * @remark All iterators, pointers and references are invalidated.
+         *
          */
         void assign( size_type count, const T& value ) {
+            reserve(count);
             for (size_type i = 0; i < count; i++) {
                 _allocator.construct(&_data[i], value);
             }

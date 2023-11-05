@@ -1,4 +1,3 @@
-#include <cstddef>
 #include <iostream>
 #include <vector>
 #include "../Includes/Vector.hpp"
@@ -52,6 +51,15 @@ int main ( void )
 
 
     /////////////////////////////////
+    
+    std::vector<int> vtest(10,1);
+    std::cout << vtest.capacity() << std::endl;
+    std::cout << vtest.size() << std::endl;
+    vtest.assign(11, 2);
+    std::cout << vtest.capacity() << std::endl;
+    std::cout << vtest.size() << std::endl;
+    std::cout << vtest.front() << std::endl;
+    std::cout << vtest.back() << std::endl;
     std::vector<int> v(10, 2);
     std::cout << v.capacity() << std::endl;
     std::cout << v.size() << std::endl;
