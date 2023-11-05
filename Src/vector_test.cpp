@@ -52,39 +52,34 @@ int main ( void )
 
     /////////////////////////////////
     
-    std::vector<int> vtest(10,1);
+    std::vector<int> vtest;
+    vtest.reserve(5);
     std::cout << vtest.capacity() << std::endl;
     std::cout << vtest.size() << std::endl;
-    vtest.assign(11, 2);
+    vtest.assign(10, 2);
     std::cout << vtest.capacity() << std::endl;
     std::cout << vtest.size() << std::endl;
     std::cout << vtest.front() << std::endl;
     std::cout << vtest.back() << std::endl;
-    std::vector<int> v(10, 2);
-    std::cout << v.capacity() << std::endl;
-    std::cout << v.size() << std::endl;
-    v.push_back(1);
-    std::cout << "added value " << v.back() << std::endl;
-    std::cout << "capa " << v.capacity() << std::endl;
-    std::cout <<"size " << v.size() << std::endl;
-    v.reserve(20);
-    std::cout << "capa " << v.capacity() << std::endl;
-    std::cout <<"size " << v.size() << std::endl;
-    v.push_back(1);
-    std::cout << "added value " << v.back() << std::endl;
-    std::cout << "capa " << v.capacity() << std::endl;
-    std::cout <<"size " << v.size() << std::endl;
-    for (size_t i = v.size(); i < v.capacity(); i++) {
-        v.push_back(i);
+    std::cout << "=========" << std::endl;
+    vtest.resize(5);
+    for (size_t i = 0; i < vtest.size(); i++) {
+        std::cout << vtest[i] << std::endl;
     }
-    for (size_t i = 0; i < v.size(); i++) {
-        std::cout << v[i] << std::endl;
+    std::cout << "=========" << std::endl;
+    vtest.resize(11);
+    for (size_t i = 0; i < vtest.size(); i++) {
+        std::cout << vtest[i] << std::endl;
     }
-    std::cout << "capa " << v.capacity() << std::endl;
-    std::cout <<"size " << v.size() << std::endl;
-    v.push_back(30);
-    std::cout << "capa " << v.capacity() << std::endl;
-    std::cout <<"size " << v.size() << std::endl;
+    std::cout << "=========" << std::endl;
+    vtest.resize(20);
+    for (size_t i = 0; i < vtest.size(); i++) {
+        std::cout << vtest[i] << std::endl;
+    }
+    vtest.resize(25, 3);
+    for (size_t i = 0; i < vtest.size(); i++) {
+        std::cout << vtest[i] << std::endl;
+    }
     return 0;
 
 }

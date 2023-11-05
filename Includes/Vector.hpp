@@ -3,6 +3,7 @@
 #include <exception>
 #include <iostream>
 #include <limits>
+#include <locale>
 #include <memory>
 
 namespace ft {
@@ -23,6 +24,20 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         allocator_type  _allocator;
         size_type       _size;
         size_type       _capacity;
+
+        /**
+         * Copies data from _data to newData.\n
+         * Destroys and deallocate previous _data.\n
+         */
+        void copy_data(pointer newData) {
+            for (size_type i = 0; i < _size; i++) {
+                _allocator.construct(&newData[i], _data[i]);
+            }
+            for (size_type i = 0; i < _size; i++) {
+                _allocator.destroy(&_data[i]);
+            }
+            _allocator.deallocate(_data, _capacity);
+        }
 
     public:
 
@@ -96,6 +111,8 @@ template<class T,class Allocator = std::allocator<T> > class vector {
 
 
         //TODO check if use Iterator to fill in the container
+        //BUG when assiging values to an empty container, reserve will be called and 
+        //force a reallocation, but underlying data pointer wont be initialized
         /**
          * Replaces the contents with count copies of value.\n
          * Complexity: Linear in count
@@ -115,6 +132,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
             for (size_type i = 0; i < count; i++) {
                 _allocator.construct(&_data[i], value);
             }
+            _size = count;
         }
 
         /*//TODO 
@@ -199,6 +217,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * @returns reference to last element
      */
     reference back(void) {
+        std::cout << _size << std::endl;
         return _data[_size - 1];
     }
 
@@ -291,23 +310,18 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * @throws bad_allocator -  if reallocation fails due to lack of space (when default alloc is used) 
      *
      * @remark Usefull if number of elements is known in advance. Can allocate 
-     * withouth instanciation right amount of data, eleminates need to reallocate when vector grows
-     * @remark If an error is thrown, leaves vector in his previous state
+     * without instanciation right amount of data, eliminates need to reallocate when vector grows
+     * @remark If an error is thrown by allocation or max_size, leaves vector in his previous state
      */
     void reserve(size_type new_cap) {
         if (new_cap > this->max_size()) {
             throw std::exception();
         }
         if (new_cap > _capacity) {
-            size_type oldCapacity = _capacity;
             pointer newData = _allocator.allocate(new_cap); 
-            for (size_type i = 0; i < _size; i++) {
-                _allocator.construct(&newData[i], _data[i]);
+            if (_data) {
+                copy_data(newData);
             }
-            for (size_type i = 0; i < _size; i++) {
-                _allocator.destroy(&_data[i]);
-            }
-            _allocator.deallocate(_data, oldCapacity);
             _data = newData;
             _capacity = new_cap;
         }
@@ -355,7 +369,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      *
      * @param value - the value of the element to append
      *
-     * @returns none
+     * @return none
      *
      * @throws exception related to allocator or element copy/move constructor/assignment.
      *
@@ -372,8 +386,75 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         _allocator.construct(&_data[_size], value);
         _size += 1;
     }
-    //pop_back 
-    //rezise 
+
+    /**
+     * Removes last element of container
+     *
+     * @param none
+     *
+     * @return none
+     *
+     * @remark Calling pop_back on empty container is undefined.
+     * @remark Iterators, pointers and references to the last element are unvalidated.
+     */
+    void pop_back(void) {
+        _allocator.destroy(&_data[_size]);
+        _size -= 1;
+    }
+    
+    /**
+     * Resizes the container to count elements, does nothing if count == size.\n
+     *
+     * If size > count, container is reduced to its first count elements.\n
+     *
+     * If size < count, additional value elements are appended.\n 
+     *
+     * @param count - New size of the container
+     * @param value - Value to append if size < count
+     *
+     * @return none
+     *
+     * @remark Complexity: Linear in the difference between current size and count.
+     * Additional Complexity is possible due to reallocation.
+     * @remark Vector capacity is not reduced to avoid invalidating all iterators.
+     * Only those affected by pop_back() call are invalidated.
+     * 
+     */
+    void resize(size_type count, const_reference value) {
+        if (_size > count) {
+            while (_size != count) {
+                pop_back(); //pop back already decreases size by 1
+            }
+        }
+        else if (_size < count) {
+            reserve(count);
+            while (_size < count) { 
+                _allocator.construct(&_data[_size], value);
+                _size++;
+            }
+        }
+    }
+
+    /**
+     * Resizes the container to count elements, does nothing if count == size.\n
+     *
+     * If size > count, container is reduced to its first count elements.\n
+     *
+     * If size < count, additional default elements are appended. (no defaults elements in c98)\n 
+     *
+     * @param count - New size of the container
+     *
+     * @return none
+     *
+     * @remark Complexity: Linear in the difference between current size and count.
+     * Additional Complexity is possible due to reallocation.
+     * @remark Vector capacity is not reduced to avoid invalidating all iterators.
+     * Only those affected by pop_back() call are invalidated.
+     * 
+     */
+    void resize(size_type count) {
+        resize(count, value_type());
+    } 
     //swap
 
 };
