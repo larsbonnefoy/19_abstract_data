@@ -96,6 +96,9 @@ void assign() {
     vf.assign(5, 2);
     vs.assign(5, 2);
     g_test(vf, vs, log); 
+    vf.assign(11, 2);
+    vs.assign(11, 2);
+    g_test(vf, vs, log); 
     std::cout << log << std::endl;
 }
 
