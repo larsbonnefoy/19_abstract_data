@@ -217,7 +217,6 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * @returns reference to last element
      */
     reference back(void) {
-        std::cout << _size << std::endl;
         return _data[_size - 1];
     }
 
@@ -378,8 +377,8 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * guarantee) 
      */
     void push_back(const_reference value) {
-        if (_size + 1 > _capacity) {
-            reserve(_capacity * 2);
+        if (_size  == _capacity) {
+            reserve(_capacity * 2 | !_capacity);
         }
         _allocator.construct(&_data[_size], value);
         _size += 1;
@@ -396,10 +395,11 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * @remark Iterators, pointers and references to the last element are unvalidated.
      */
     void pop_back(void) {
-        _allocator.destroy(&_data[_size]);
-        _size -= 1;
+        _allocator.destroy(_data + _size - 1);
+        _size--;
     }
     
+    //TODO: use insert and erase
     /**
      * Resizes the container to count elements, does nothing if count == size.\n
      *
@@ -418,41 +418,23 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * Only those affected by pop_back() call are invalidated.
      * 
      */
-    void resize(size_type count, const_reference value) {
+    void resize(size_type count, value_type val = value_type()) {
         if (_size > count) {
             while (_size != count) {
                 pop_back(); //pop back already decreases size by 1
             }
         }
         else if (_size < count) {
-            reserve(count);
+            if (count > _capacity) {
+                reserve(_capacity * 2 | !_capacity);
+            }
             while (_size < count) { 
-                _allocator.construct(&_data[_size], value);
+                _allocator.construct(&_data[_size], val);
                 _size++;
             }
         }
     }
 
-    /**
-     * Resizes the container to count elements, does nothing if count == size.\n
-     *
-     * If size > count, container is reduced to its first count elements.\n
-     *
-     * If size < count, additional default elements are appended. (no defaults elements in c98)\n 
-     *
-     * @param count - New size of the container
-     *
-     * @return none
-     *
-     * @remark Complexity: Linear in the difference between current size and count.
-     * Additional Complexity is possible due to reallocation.
-     * @remark Vector capacity is not reduced to avoid invalidating all iterators.
-     * Only those affected by pop_back() call are invalidated.
-     * 
-     */
-    void resize(size_type count) {
-        resize(count, value_type());
-    } 
     //swap
 
 };
