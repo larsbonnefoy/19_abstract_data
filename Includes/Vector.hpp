@@ -264,10 +264,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * Checks if container is empty, ie if begin() == end()
      */
     bool empty( void ) {
-        if (_size == 0) {
-            return true;
-        }
-        return false;
+        return (!_size);
     }
 
     /**
@@ -361,6 +358,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
     //insert
     //erase 
 
+    //https://stackoverflow.com/questions/13822880/linked-list-vs-dynamic-array-for-implementing-a-stack-using-vector-class
     /**
      * Adds new element at the end of vector.\n
      * New element is initialized as a copy of value.\n

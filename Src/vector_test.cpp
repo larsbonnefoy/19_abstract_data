@@ -2,8 +2,122 @@
 #include <vector>
 #include "../Includes/Vector.hpp"
 
+#define IS_TRUE(x) ((x) ? (std::cout << "\e[1;32m[OK] \e[0m", true) : (std::cout << "\e[1;31m[KO] \e[0m", false))
+
+#define NOT_EMPTY "Vectors are not empty\n"
+#define DIFFERENT_CAPA "Vectors have different capacities\n"
+
+/*
+#define IS_TRUE(x) do { \
+    std::string msg = (x) ? "\e[1;31m [OK] \e[0m" : "\e[1;31m [KO] \e[0m"; \
+    std::cout << msg << std::endl; \
+} while (false)
+
+void is_true(bool x) {
+    std::string msg = x ? "\e[1;31m [OK] \e[0m" : "\e[1;31m [KO] \e[0m";
+    std::cout << msg << std::endl;
+}
+*/
+
+
+/**
+ * Comapres value by value each vector
+ */
+bool value_compare(ft::vector<int> &v1, std::vector<int> &v2) {
+    if (v1.size() != v2.size()) {return false;}
+    for (size_t i = 0; i < v1.size(); i++) {
+        if (v1[i] != v2[i]) {return false;}
+    }
+    return true;
+}
+
+/**
+ * Tests behaviour in case of empty vector
+ */
+void is_empty() {
+    std::cout << __FUNCTION__<< ": ";
+    std::string log;
+    ft::vector<int> vf;
+    std::vector<int> vs;
+    IS_TRUE(vf.empty() == vs.empty()) ? log.append(""): log.append(NOT_EMPTY);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(vf.data() == vs.data());
+    std::cout << log << std::endl;
+}
+
+/**
+ * Tests assign function.
+ */
+void assign() {
+    std::cout << __FUNCTION__<< ": ";
+    ft::vector<int> vf;
+    std::vector<int> vs;
+    vf.assign(0, 2);
+    vs.assign(0, 2);
+    IS_TRUE(vf.empty() == vs.empty());
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    vf.assign(10, 1);
+    vs.assign(10, 1);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    vf.assign(5, 2);
+    vs.assign(5, 2);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    std::cout << std::endl;
+}
+
+void resize() {
+    std::cout << __FUNCTION__ << ": ";
+    std::string log;
+    ft::vector<int> vf;
+    std::vector<int> vs;
+    vf.reserve(5);
+    vs.reserve(5);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    vf.assign(10, 2);
+    vs.assign(10, 2);
+    vf.resize(5);
+    vs.resize(5);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    vf.resize(11);
+    vs.resize(11);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    vf.resize(20);
+    vs.resize(20);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    vf.resize(25, 3);
+    vs.resize(25, 3);
+    IS_TRUE(vf.capacity() == vs.capacity());
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    vf.resize(20, 3);
+    vs.resize(20, 3);
+    IS_TRUE(vf.capacity() == vs.capacity()) ? log.append(""): log.append(DIFFERENT_CAPA);
+    IS_TRUE(vf.size() == vs.size());
+    IS_TRUE(value_compare(vf, vs));
+    std::cout << log << std::endl;
+}
+
+
 int main ( void )
 {
+    is_empty();
+    assign();
+    resize();
     /*
     int *v1 = &(v.front());
     *v1 = 2;
@@ -52,34 +166,8 @@ int main ( void )
 
     /////////////////////////////////
     
-    std::vector<int> vtest;
-    vtest.reserve(5);
-    std::cout << vtest.capacity() << std::endl;
-    std::cout << vtest.size() << std::endl;
-    vtest.assign(10, 2);
-    std::cout << vtest.capacity() << std::endl;
-    std::cout << vtest.size() << std::endl;
-    std::cout << vtest.front() << std::endl;
-    std::cout << vtest.back() << std::endl;
-    std::cout << "=========" << std::endl;
-    vtest.resize(5);
-    for (size_t i = 0; i < vtest.size(); i++) {
-        std::cout << vtest[i] << std::endl;
-    }
-    std::cout << "=========" << std::endl;
-    vtest.resize(11);
-    for (size_t i = 0; i < vtest.size(); i++) {
-        std::cout << vtest[i] << std::endl;
-    }
-    std::cout << "=========" << std::endl;
-    vtest.resize(20);
-    for (size_t i = 0; i < vtest.size(); i++) {
-        std::cout << vtest[i] << std::endl;
-    }
-    vtest.resize(25, 3);
-    for (size_t i = 0; i < vtest.size(); i++) {
-        std::cout << vtest[i] << std::endl;
-    }
+    /*
+    */
     return 0;
 
 }
