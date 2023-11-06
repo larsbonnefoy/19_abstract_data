@@ -1,5 +1,4 @@
 #pragma once
-#include <functional>
 #include <iterator>
 
 namespace ft {
@@ -10,8 +9,9 @@ struct iterator
     typedef Category    iterator_category;
     typedef T           value_type;
     typedef Distance    difference_type;
-    typedef Pointer     pointer;            //pointer and references to the underlying data type
+    typedef Pointer     pointer;            
     typedef Reference   reference;
+    //pointer and references to the underlying data type, not iterator itself
 };
 
 /**
@@ -34,7 +34,6 @@ class random_access_iterator : public iterator<std::random_access_iterator_tag, 
         /**
          * Default Constuctor 
          *
-         * @return Null ptr
          */
         random_access_iterator() : _ptr(0x0) {};
 
@@ -43,7 +42,6 @@ class random_access_iterator : public iterator<std::random_access_iterator_tag, 
          *
          * @param ptr - Underlying pointer address
          *
-         * @return Null ptr
          */
         random_access_iterator(pointer ptr) : _ptr(ptr) {};
 
@@ -53,7 +51,6 @@ class random_access_iterator : public iterator<std::random_access_iterator_tag, 
          *
          * @param other - other Iterator
          *
-         * @return Null ptr
          */
         random_access_iterator(const random_access_iterator &other) : _ptr(other._ptr) {};
 
@@ -76,9 +73,10 @@ class random_access_iterator : public iterator<std::random_access_iterator_tag, 
             return *this;
         }
 
-        //TODO
-        //base();
-        //*a = t
+        /**
+         * Returns underlying pointer
+         */
+        pointer base() const {return _ptr;}
 
         /**
          * Iterator can be dereferenced as an rvalue;
@@ -203,9 +201,98 @@ class random_access_iterator : public iterator<std::random_access_iterator_tag, 
             return *this;
         }
 
-        reference operator[] (difference_type n) const {
-            return _ptr[n];
-        }
+        /**
+         * Accesses the element located n positions away from the element currently pointed to by the iterator.
+         *
+         * @param n - Position of element to access
+         *
+         * @return reference to _ptr + n element
+         */
+        reference operator[] (difference_type n) const {return _ptr[n];}
 };
+
+/**
+ * Function template.\n
+ * Compares if underlying pointer x is smaller or equal to y 
+ *
+ * @param x - First iterator to compare
+ * @param y - Second iterator to compare
+ *
+ * @return boolean
+ */
+template<class Iter1, class Iter2>
+bool operator<=(const random_access_iterator<Iter1>& x, const random_access_iterator<Iter2>& y){
+    return x.base() <= y.base();
+}
+
+/**
+ * Function template.\n
+ * Compares if underlying pointer x is strictly smaller than y 
+ *
+ * @param x - First iterator to compare
+ * @param y - Second iterator to compare
+ *
+ * @return boolean
+ */
+template<class Iter1, class Iter2>
+bool operator<(const random_access_iterator<Iter1>& x, const random_access_iterator<Iter2>& y){
+    return x.base() < y.base();
+}
+
+/**
+ * Function template.\n
+ * Compares if underlying pointer x is equal to y 
+ *
+ * @param x - First iterator to compare
+ * @param y - Second iterator to compare
+ *
+ * @return boolean
+ */
+template<class Iter1, class Iter2>
+bool operator==(const random_access_iterator<Iter1>& x, const random_access_iterator<Iter2>& y){
+    return x.base() == y.base();
+}
+
+/**
+ * Function template.\n
+ * Compares if underlying pointer x if different than y 
+ *
+ * @param x - First iterator to compare
+ * @param y - Second iterator to compare
+ *
+ * @return boolean
+ */
+template<class Iter1, class Iter2>
+bool operator!=(const random_access_iterator<Iter1>& x, const random_access_iterator<Iter2>& y){
+    return x.base() != y.base();
+}
+
+/**
+ * Function template.\n
+ * Compares if underlying pointer x is strictly greater than y 
+ *
+ * @param x - First iterator to compare
+ * @param y - Second iterator to compare
+ *
+ * @return boolean
+ */
+template<class Iter1, class Iter2>
+bool operator>(const random_access_iterator<Iter1>& x, const random_access_iterator<Iter2>& y){
+    return x.base() > y.base();
+}
+
+/**
+ * Function template.\n
+ * Compares if underlying pointer x is greater or equal to y 
+ *
+ * @param x - First iterator to compare
+ * @param y - Second iterator to compare
+ *
+ * @return boolean
+ */
+template<class Iter1, class Iter2>
+bool operator>=(const random_access_iterator<Iter1>& x, const random_access_iterator<Iter2>& y){
+    return x.base() >= y.base();
+}
 
 }

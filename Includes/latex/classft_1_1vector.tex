@@ -1,0 +1,627 @@
+\doxysection{ft\+::vector\texorpdfstring{$<$}{<} T, Allocator \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classft_1_1vector}{}\label{classft_1_1vector}\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classft_1_1vector_ace674581f7f93123932591c7d22c34a0}\label{classft_1_1vector_ace674581f7f93123932591c7d22c34a0} 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{typedef}} \mbox{\hyperlink{classft_1_1random__access__iterator}{ft\+::random\+\_\+access\+\_\+iterator}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{value\+\_\+type}} $>$ {\bfseries iterator}
+\item 
+\Hypertarget{classft_1_1vector_ab2633813d3bb184283de94b98d4cffba}\label{classft_1_1vector_ab2633813d3bb184283de94b98d4cffba} 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{typedef}} \mbox{\hyperlink{classft_1_1random__access__iterator}{ft\+::random\+\_\+access\+\_\+iterator}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{value\+\_\+type}} $>$ {\bfseries const\+\_\+iterator}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classft_1_1vector_a2dd018852bf471d4286ea43a6609fcf7}{vector}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+\mbox{\hyperlink{classft_1_1vector_ab743cada3810fd74f3e7edab35fc4b69}{vector}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} \&\mbox{\hyperlink{classft_1_1random__access__iterator}{alloc}})
+\item 
+\mbox{\hyperlink{classft_1_1vector_a5ef9c5c6e5292a80e45d3aba9e21ffff}{vector}} (size\+\_\+type \mbox{\hyperlink{classft_1_1random__access__iterator}{count}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} \&\mbox{\hyperlink{classft_1_1random__access__iterator}{value}}=\mbox{\hyperlink{classft_1_1random__access__iterator}{T}}(), \mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} \&\mbox{\hyperlink{classft_1_1random__access__iterator}{alloc}}=\mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}())
+\item 
+\mbox{\hyperlink{classft_1_1vector_ab49c27162805ca1dbfdfb41bbcad8902}{vector}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1vector}{vector}} \&\mbox{\hyperlink{classft_1_1random__access__iterator}{other}})
+\item 
+\mbox{\hyperlink{classft_1_1vector_ab4a3929b2dcd4cdd466bcc5983a193ca}{\texorpdfstring{$\sim$}{\string~}vector}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector_aad30fa3aed1a94002a5585a84cc02f90}{assign}} (size\+\_\+type \mbox{\hyperlink{classft_1_1random__access__iterator}{count}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} \&\mbox{\hyperlink{classft_1_1random__access__iterator}{value}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\+\_\+type}} \mbox{\hyperlink{classft_1_1vector_a0b6a5e0151029e8fd10db99df60c8754}{get\+\_\+allocator}} () \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector_aa750ccf39ef1ea81ab32e918a97f8089}{at}} (size\+\_\+type \mbox{\hyperlink{classft_1_1random__access__iterator}{pos}})
+\item 
+const\+\_\+reference \mbox{\hyperlink{classft_1_1vector_ac6353ea02a71e631aa0aae7b1efaf537}{at}} (size\+\_\+type \mbox{\hyperlink{classft_1_1random__access__iterator}{pos}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector_a119394e7ed7d4ac9b38011c7ff58d792}{operator\mbox{[}$\,$\mbox{]}}} (size\+\_\+type \mbox{\hyperlink{classft_1_1random__access__iterator}{pos}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector_a7a6ce0c571b331432622de19e5bc68d0}{front}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+const\+\_\+reference \mbox{\hyperlink{classft_1_1vector_adc3ec739479d333ba3f82cc4d27a5193}{front}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector_ae00bf23b240ec6fb54b43918b4d57229}{back}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+const\+\_\+reference \mbox{\hyperlink{classft_1_1vector_ae370bee5a527464e4a34c83ac1faf86c}{back}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}} \mbox{\hyperlink{classft_1_1vector_ac8a5d0804e3245523436f99d43e6e3e4}{data}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}} \mbox{\hyperlink{classft_1_1vector_a67e029fba4b18e1e1aefcacab57d81d7}{data}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{iterator}} \mbox{\hyperlink{classft_1_1vector_a019a0193383318f60eb4d34372cd1610}{begin}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{classft_1_1vector_a52c3f2fc2bd1872737fd1a8812a3e559}{begin}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{iterator}} \mbox{\hyperlink{classft_1_1vector_a68247c799a90f11a73c4466848bf840c}{end}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{classft_1_1vector_aa6327a3957b7aedbeff329d429f773ea}{end}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{bool}} \mbox{\hyperlink{classft_1_1vector_a5fed14e27a0758ea7fe5c308149ec95a}{empty}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+size\+\_\+type \mbox{\hyperlink{classft_1_1vector_a0da980239ba207294b03bf8750d8096c}{size}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+size\+\_\+type \mbox{\hyperlink{classft_1_1vector_a7672a695bbd90e2cb78fdf3a0ebf38e4}{max\+\_\+size}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}) \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector_af1d766249b6ee43c60d068022707ba4c}{reserve}} (size\+\_\+type \mbox{\hyperlink{classft_1_1random__access__iterator}{new\+\_\+cap}})
+\item 
+size\+\_\+type \mbox{\hyperlink{classft_1_1vector_a218654046a90bfae6ef2b65654fdf07f}{capacity}} () \mbox{\hyperlink{classft_1_1random__access__iterator}{const}}
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector_a9cb9094847701b94444a6c5fb44df340}{clear}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector_a1b86e1845032df677c1506611c724bab}{push\+\_\+back}} (const\+\_\+reference \mbox{\hyperlink{classft_1_1random__access__iterator}{value}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector_ad5b97098508e54444404f2d96609d013}{pop\+\_\+back}} (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})
+\item 
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector_aa7e623994772ba0d355c6bfd597f258d}{resize}} (size\+\_\+type \mbox{\hyperlink{classft_1_1random__access__iterator}{count}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{value\+\_\+type}} \mbox{\hyperlink{classft_1_1random__access__iterator}{val}}=\mbox{\hyperlink{classft_1_1random__access__iterator}{value\+\_\+type}}())
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classft_1_1vector_a2dd018852bf471d4286ea43a6609fcf7}\label{classft_1_1vector_a2dd018852bf471d4286ea43a6609fcf7} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!vector@{vector}}
+\index{vector@{vector}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{vector()}{vector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an empty container~\newline
+Complexity\+: Constant
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+empty vector 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_ab743cada3810fd74f3e7edab35fc4b69}\label{classft_1_1vector_ab743cada3810fd74f3e7edab35fc4b69} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!vector@{vector}}
+\index{vector@{vector}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{vector()}{vector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} \&}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs an empty container with the given allocator alloc~\newline
+Complexity\+: Constant
+
+
+\begin{DoxyParams}{Parameters}
+{\em alloc} & -\/ allocator used for memory allocation of this container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+empty vector 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a5ef9c5c6e5292a80e45d3aba9e21ffff}\label{classft_1_1vector_a5ef9c5c6e5292a80e45d3aba9e21ffff} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!vector@{vector}}
+\index{vector@{vector}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{vector()}{vector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::vector (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{count,  }\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} \&}]{value = {\ttfamily \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}()},  }\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} \&}]{alloc = {\ttfamily \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs the container with count copies of elements with value value~\newline
+Complexity\+: Linear in count
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & -\/ size of the container \\
+\hline
+{\em value} & -\/ value to initialize elements of the container with \\
+\hline
+{\em alloc} & -\/ allocator used for memory allocation of this container\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+initialized vector 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_ab49c27162805ca1dbfdfb41bbcad8902}\label{classft_1_1vector_ab49c27162805ca1dbfdfb41bbcad8902} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!vector@{vector}}
+\index{vector@{vector}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{vector()}{vector()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1vector}{vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor. Constructs the container with the copy if the contents of other.~\newline
+Complexity\+: Linear in size of other
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & another container to be used as source to initialize elements of the container\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+initialized vector 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_ab4a3929b2dcd4cdd466bcc5983a193ca}\label{classft_1_1vector_ab4a3929b2dcd4cdd466bcc5983a193ca} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!````~vector@{\texorpdfstring{$\sim$}{\string~}vector}}
+\index{````~vector@{\texorpdfstring{$\sim$}{\string~}vector}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}vector()}{\string~vector()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{classft_1_1vector}{vector}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructs the vector 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classft_1_1vector_aad30fa3aed1a94002a5585a84cc02f90}\label{classft_1_1vector_aad30fa3aed1a94002a5585a84cc02f90} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!assign@{assign}}
+\index{assign@{assign}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{assign()}{assign()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::assign (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{count,  }\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Replaces the contents with count copies of value.~\newline
+Complexity\+: Linear in count
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & -\/ new size of the container \\
+\hline
+{\em value} & -\/ value to initialize the container with\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+If count \texorpdfstring{$>$}{>} capacity, reallocation takes place but values are overridden. 
+
+All iterators, pointers and references are invalidated. 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_aa750ccf39ef1ea81ab32e918a97f8089}\label{classft_1_1vector_aa750ccf39ef1ea81ab32e918a97f8089} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!at@{at}}
+\index{at@{at}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::at (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a reference to the element at specified location pos, with bound checking.~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em pos} & -\/ Index of wanted element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference to specified element
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em ft\+::out\+\_\+of\+\_\+range} & if pos is not within the range of the container \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classft_1_1vector_ac6353ea02a71e631aa0aae7b1efaf537}\label{classft_1_1vector_ac6353ea02a71e631aa0aae7b1efaf537} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!at@{at}}
+\index{at@{at}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+const\+\_\+reference \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::at (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a const reference to the element at specified location pos, with bound checking.~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em pos} & -\/ Index of wanted element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const reference to specified element
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em ft\+::out\+\_\+of\+\_\+range} & if pos is not within the range of the container \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classft_1_1vector_ae00bf23b240ec6fb54b43918b4d57229}\label{classft_1_1vector_ae00bf23b240ec6fb54b43918b4d57229} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!back@{back}}
+\index{back@{back}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns reference to last element of container
+
+\begin{DoxyReturn}{Returns}
+reference to last element 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_ae370bee5a527464e4a34c83ac1faf86c}\label{classft_1_1vector_ae370bee5a527464e4a34c83ac1faf86c} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!back@{back}}
+\index{back@{back}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+const\+\_\+reference \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns reference to last element of container
+
+\begin{DoxyReturn}{Returns}
+reference to last element 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a019a0193383318f60eb4d34372cd1610}\label{classft_1_1vector_a019a0193383318f60eb4d34372cd1610} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!begin@{begin}}
+\index{begin@{begin}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{iterator}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::begin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns random access iterator to the first element
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random access iterator to the first element
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+if container is empty, iterator should not be dereferenced as underlying pointer = 0 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_a52c3f2fc2bd1872737fd1a8812a3e559}\label{classft_1_1vector_a52c3f2fc2bd1872737fd1a8812a3e559} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!begin@{begin}}
+\index{begin@{begin}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::begin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns random access iterator to the const first element
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random access iterator to the const first element
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+if container is empty, iterator should not be dereferenced as underlying pointer = 0 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_a218654046a90bfae6ef2b65654fdf07f}\label{classft_1_1vector_a218654046a90bfae6ef2b65654fdf07f} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!capacity@{capacity}}
+\index{capacity@{capacity}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+size\+\_\+type \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns capacity of the container
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+capacity of the container 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a9cb9094847701b94444a6c5fb44df340}\label{classft_1_1vector_a9cb9094847701b94444a6c5fb44df340} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!clear@{clear}}
+\index{clear@{clear}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Erases all the elements of the container, each element is destroyed.~\newline
+Leaves container with a size of 0.~\newline
+Leaves capacity unchanged.~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+Complexity linear in size of container 
+
+Invalidates any reference, pointer or iterator reffering to the contained elements 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_ac8a5d0804e3245523436f99d43e6e3e4}\label{classft_1_1vector_ac8a5d0804e3245523436f99d43e6e3e4} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!data@{data}}
+\index{data@{data}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a pointer to the underlying array serving as storage
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to underlying element storage 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a67e029fba4b18e1e1aefcacab57d81d7}\label{classft_1_1vector_a67e029fba4b18e1e1aefcacab57d81d7} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!data@{data}}
+\index{data@{data}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{data()}{data()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{const}} \mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a const pointer to the underlying array serving as storage
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const pointer to underlying element storage 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a5fed14e27a0758ea7fe5c308149ec95a}\label{classft_1_1vector_a5fed14e27a0758ea7fe5c308149ec95a} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!empty@{empty}}
+\index{empty@{empty}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{bool}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if container is empty, ie if \doxylink{classft_1_1vector_a019a0193383318f60eb4d34372cd1610}{begin()} == \doxylink{classft_1_1vector_a68247c799a90f11a73c4466848bf840c}{end()} \Hypertarget{classft_1_1vector_a68247c799a90f11a73c4466848bf840c}\label{classft_1_1vector_a68247c799a90f11a73c4466848bf840c} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!end@{end}}
+\index{end@{end}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{iterator}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns random access iterator to {\itshape past-\/the-\/end} element.~\newline
+It is the theoretical element after the last element.~\newline
+ It does not point to anything so it should not be dereferenced.
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random access iterator to last + 1
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+if container is empty, iterator should not be dereferenced as underlying pointer = 0, returns the same as begin 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_aa6327a3957b7aedbeff329d429f773ea}\label{classft_1_1vector_aa6327a3957b7aedbeff329d429f773ea} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!end@{end}}
+\index{end@{end}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{const\+\_\+iterator}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns random access iterator to const {\itshape past-\/the-\/end} element.~\newline
+It is the theoretical element after the last element.~\newline
+It does not point to anything so it should not be dereferenced.
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+random access iterator to const last + 1
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+if container is empty, iterator should not be dereferenced as underlying pointer = 0, returns the same as begin 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_a7a6ce0c571b331432622de19e5bc68d0}\label{classft_1_1vector_a7a6ce0c571b331432622de19e5bc68d0} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!front@{front}}
+\index{front@{front}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{front()}{front()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns reference to first element of container
+
+\begin{DoxyReturn}{Returns}
+reference to first element 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_adc3ec739479d333ba3f82cc4d27a5193}\label{classft_1_1vector_adc3ec739479d333ba3f82cc4d27a5193} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!front@{front}}
+\index{front@{front}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{front()}{front()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+const\+\_\+reference \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns const reference to first element of container
+
+\begin{DoxyReturn}{Returns}
+const reference to first element 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a0b6a5e0151029e8fd10db99df60c8754}\label{classft_1_1vector_a0b6a5e0151029e8fd10db99df60c8754} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!get\_allocator@{get\_allocator}}
+\index{get\_allocator@{get\_allocator}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{get\_allocator()}{get\_allocator()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\+\_\+type}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::get\+\_\+allocator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns allocator associated with container
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+associated allocator 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a7672a695bbd90e2cb78fdf3a0ebf38e4}\label{classft_1_1vector_a7672a695bbd90e2cb78fdf3a0ebf38e4} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!max\_size@{max\_size}}
+\index{max\_size@{max\_size}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{max\_size()}{max\_size()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+size\+\_\+type \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::max\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the maximum number of elements that the vector is able to hold due to system or library implementation limits.~\newline
+Theoretical limit given by std\+::numeric\+\_\+limits$<$difference\+\_\+type$>$\+::max(), at runtime the real value might be smaller given available RAM space.
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Maximum number of elements 
+\end{DoxyReturn}
+\Hypertarget{classft_1_1vector_a119394e7ed7d4ac9b38011c7ff58d792}\label{classft_1_1vector_a119394e7ed7d4ac9b38011c7ff58d792} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{reference}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a const reference to the element at specified index pos, without bound checking.~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em pos} & -\/ Index of wanted element\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const reference to specified element
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+Access out of bond element results in undefined behaviour 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_ad5b97098508e54444404f2d96609d013}\label{classft_1_1vector_ad5b97098508e54444404f2d96609d013} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!pop\_back@{pop\_back}}
+\index{pop\_back@{pop\_back}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{pop\_back()}{pop\_back()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::pop\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Removes last element of container
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+Calling pop\+\_\+back on empty container is undefined. 
+
+Iterators, pointers and references to the last element are unvalidated. 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_a1b86e1845032df677c1506611c724bab}\label{classft_1_1vector_a1b86e1845032df677c1506611c724bab} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{const\+\_\+reference}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds new element at the end of vector.~\newline
+New element is initialized as a copy of value.~\newline
+If new size is bigger than previous capacity, reallocation takes place.~\newline
+Reallocates by a factor of 2. (In more modern implementation this factor is 1.\+5).~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em value} & -\/ the value of the element to append\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em exception} & related to allocator or element copy/move constructor/assignment.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyRemark}{Remarks}
+Complexity\+: Amortized constant //\+TODO\+: check why Amortized 
+
+If reallocation happens, all references, pointers or iterators related to the underlying data are invalidated 
+
+If an error is thrown this function has no effect (= strong exception guarantee) 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_af1d766249b6ee43c60d068022707ba4c}\label{classft_1_1vector_af1d766249b6ee43c60d068022707ba4c} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!reserve@{reserve}}
+\index{reserve@{reserve}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::reserve (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{new\+\_\+cap }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Requests that \+\_\+capacity should at least contain new\+\_\+cap elements.~\newline
+If new\+\_\+cap is greater than current vector \+\_\+capacity, function causes container to reallocate increasing capacity to new\+\_\+cap.~\newline
+Complexity\+: if realloc happens, linear in vector\+\_\+size at most.~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+cap} & -\/ new capacity of the vector, in number of elements\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em length\+\_\+error} & -\/ exception is size requested is greater than \doxylink{classft_1_1vector_a7672a695bbd90e2cb78fdf3a0ebf38e4}{vector\+::max\+\_\+size} \\
+\hline
+{\em bad\+\_\+allocator} & -\/ if reallocation fails due to lack of space (when default alloc is used)\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyRemark}{Remarks}
+Usefull if number of elements is known in advance. Can allocate without instanciation right amount of data, eliminates need to reallocate when vector grows 
+
+If an error is thrown by allocation or max\+\_\+size, leaves vector in his previous state 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_aa7e623994772ba0d355c6bfd597f258d}\label{classft_1_1vector_aa7e623994772ba0d355c6bfd597f258d} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!resize@{resize}}
+\index{resize@{resize}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+\mbox{\hyperlink{classft_1_1random__access__iterator}{void}} \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::resize (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{count,  }\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{value\+\_\+type}}}]{val = {\ttfamily \mbox{\hyperlink{classft_1_1random__access__iterator}{value\+\_\+type}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes the container to count elements, does nothing if count == size.~\newline
+ If size \texorpdfstring{$>$}{>} count, container is reduced to its first count elements.~\newline
+ If size \texorpdfstring{$<$}{<} count, additional value elements are appended.~\newline
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & -\/ New size of the container \\
+\hline
+{\em value} & -\/ Value to append if size \texorpdfstring{$<$}{<} count\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+Complexity\+: Linear in the difference between current size and count. Additional Complexity is possible due to reallocation. 
+
+Vector capacity is not reduced to avoid invalidating all iterators. Only those affected by \doxylink{classft_1_1vector_ad5b97098508e54444404f2d96609d013}{pop\+\_\+back()} call are invalidated. 
+\end{DoxyRemark}
+\Hypertarget{classft_1_1vector_a0da980239ba207294b03bf8750d8096c}\label{classft_1_1vector_a0da980239ba207294b03bf8750d8096c} 
+\index{ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}!size@{size}}
+\index{size@{size}!ft::vector$<$ T, Allocator $>$@{ft::vector$<$ T, Allocator $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{T}} , \mbox{\hyperlink{classft_1_1random__access__iterator}{class}} \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}  = std\+::allocator$<$\+T$>$$>$ \\
+size\+\_\+type \mbox{\hyperlink{classft_1_1vector}{ft\+::vector}}$<$ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}, \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}} $>$\+::size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classft_1_1random__access__iterator}{void}}}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns number of elements in the container
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of elements in the container 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vector.\+hpp\end{DoxyCompactItemize}

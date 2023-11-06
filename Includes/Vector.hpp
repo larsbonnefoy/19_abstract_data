@@ -4,23 +4,23 @@
 #include <cstring>
 #include <exception>
 #include <iostream>
-#include <iterator>
 #include <limits>
 #include <locale>
 #include <memory>
+#include "iterator.hpp"
 
 namespace ft {
 
 template<class T,class Allocator = std::allocator<T> > class vector {
 
-    typedef T                                           value_type;
-    typedef Allocator                                   allocator_type;
-    typedef std::size_t                                 size_type;
-    typedef std::ptrdiff_t                              difference_type;
-    typedef typename allocator_type::reference          reference;
-    typedef typename allocator_type::const_reference    const_reference;
-    typedef typename allocator_type::pointer            pointer;
-    typedef typename allocator_type::const_pointer      const_pointer;
+    typedef T                                                       value_type;
+    typedef Allocator                                               allocator_type;
+    typedef std::size_t                                             size_type;
+    typedef std::ptrdiff_t                                          difference_type;
+    typedef typename allocator_type::reference                      reference;
+    typedef typename allocator_type::const_reference                const_reference;
+    typedef typename allocator_type::pointer                        pointer;
+    typedef typename allocator_type::const_pointer                  const_pointer;
     
 
     private:
@@ -44,6 +44,8 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         }
 
     public:
+        typedef typename ft::random_access_iterator<value_type>         iterator;   
+        typedef typename ft::random_access_iterator<const value_type>   const_iterator;   
 
         /**
          * Constructs an empty container\n
@@ -265,8 +267,61 @@ template<class T,class Allocator = std::allocator<T> > class vector {
     }
 
     /***************************Iterators**************************************/
-    //begin
-    //end
+
+    /**
+     * Returns random access iterator to the first element 
+     *
+     * @param none
+     *
+     * @return random access iterator to the first element
+     *
+     * @remark if container is empty, iterator should not be dereferenced as 
+     * underlying pointer = 0
+     */
+    iterator begin(void) {return _data;}
+
+    /**
+     * Returns random access iterator to the const first element 
+     *
+     * @param none
+     *
+     * @return random access iterator to the const first element
+     *
+     * @remark if container is empty, iterator should not be dereferenced as 
+     * underlying pointer = 0
+     */
+    const_iterator begin(void) const {return _data;}
+
+    /**
+     * Returns random access iterator to *past-the-end* element.\n
+     * It is the theoretical element after the last element.\n
+     *
+     * It does not point to anything so it should not be dereferenced.
+     *
+     * @param none
+     *
+     * @return random access iterator to last + 1
+     *
+     * @remark if container is empty, iterator should not be dereferenced as 
+     * underlying pointer = 0, returns the same as begin
+     */
+    iterator end(void) {return _data + _size;}
+
+    /**
+     * Returns random access iterator to const *past-the-end* element.\n
+     * It is the theoretical element after the last element.\n
+     * It does not point to anything so it should not be dereferenced.
+     * 
+     *
+     * @param none
+     *
+     * @return random access iterator to const last + 1
+     *
+     * @remark if container is empty, iterator should not be dereferenced as 
+     * underlying pointer = 0, returns the same as begin
+     */
+    const_iterator end(void) const {return _data + _size;}
+    
     //rbegin
     //rend
     /***************************Capacity***************************************/
@@ -297,6 +352,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
      * at runtime the real value might be smaller given available RAM space.
      * 
      * @param none
+     *
      * @returns Maximum number of elements 
      */
     size_type max_size(void) const {

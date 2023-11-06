@@ -1,0 +1,240 @@
+\doxysection{vector.\+hpp}
+\hypertarget{vector_8hpp_source}{}\label{vector_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <locale>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}iterator.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }ft\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T,\textcolor{keyword}{class}\ Allocator\ =\ std::allocator<T>\ >\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classft_1_1vector}{vector}}\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{value\_type}};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\_type}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{typedef}\ std::size\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ size\_type;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{typedef}\ std::ptrdiff\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ difference\_type;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\_type::reference}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{reference}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ allocator\_type::const\_reference\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\_reference;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\_type::pointer}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ allocator\_type::const\_pointer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\_pointer;}
+\DoxyCodeLine{00024\ \ \ \ \ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}}\ \ \ \ \ \ \ \ \ \_data;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\_type}}\ \ \_allocator;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ size\_type\ \ \ \ \ \ \ \_size;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ size\_type\ \ \ \ \ \ \ \_capacity;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ copy\_data(\mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{newData}})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ =\ 0;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ <\ \_size;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}++)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.construct(\&\mbox{\hyperlink{classft_1_1random__access__iterator}{newData}}[\mbox{\hyperlink{classft_1_1random__access__iterator}{i}}],\ \_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{i}}]);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ =\ 0;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ <\ \_size;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}++)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.destroy(\&\_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{i}}]);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.deallocate(\_data,\ \_capacity);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{ft::random\_access\_iterator<value\_type>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{iterator}};\ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{ft::random\_access\_iterator<const\ value\_type>}}\ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{const\_iterator}};\ \ \ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_a2dd018852bf471d4286ea43a6609fcf7}{vector}}(\ \textcolor{keywordtype}{void}\ )\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \_data(0x0),\ \_allocator(\mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\_type}}()),\ \_size(0),\ \_capacity(0)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classft_1_1vector_ab743cada3810fd74f3e7edab35fc4b69}{vector}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}\&\ \mbox{\hyperlink{classft_1_1random__access__iterator}{alloc}}\ )\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \_data(0x0),\ \_allocator(\mbox{\hyperlink{classft_1_1random__access__iterator}{alloc}}),\ \_size(0),\ \_capacity(0)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classft_1_1vector_a5ef9c5c6e5292a80e45d3aba9e21ffff}{vector}}(\ size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}\&\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value}}\ =\ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}(),\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}\&\ \mbox{\hyperlink{classft_1_1random__access__iterator}{alloc}}\ =\ \mbox{\hyperlink{classft_1_1random__access__iterator}{Allocator}}()\ )\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \ \_allocator(\mbox{\hyperlink{classft_1_1random__access__iterator}{alloc}}),\ \_size(\mbox{\hyperlink{classft_1_1random__access__iterator}{count}}),\ \_capacity(\mbox{\hyperlink{classft_1_1random__access__iterator}{count}})\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_data\ =\ \_allocator.allocate(\_capacity);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_aad30fa3aed1a94002a5585a84cc02f90}{assign}}(\mbox{\hyperlink{classft_1_1random__access__iterator}{count}},\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value}});}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_ab49c27162805ca1dbfdfb41bbcad8902}{vector}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classft_1_1vector}{vector}}\&\ \mbox{\hyperlink{classft_1_1random__access__iterator}{other}}\ )\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{classft_1_1random__access__iterator}{void}})\ \mbox{\hyperlink{classft_1_1random__access__iterator}{other}};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_ab4a3929b2dcd4cdd466bcc5983a193ca}{\string~vector}}(\ \textcolor{keywordtype}{void}\ )\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ =\ 0;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ <\ \_size;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}++)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.destroy(\&\_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{i}}]);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.deallocate(\_data,\ \_capacity);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//TODO}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Iterator\ Constructor\ do\ to}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ template<\ class\ InputIt\ >}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector(\ InputIt\ first,\ InputIt\ last,\ const\ Allocator\&\ alloc\ =\ Allocator()\ );}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//TODO\ check\ if\ use\ Iterator\ to\ fill\ in\ the\ container}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//BUG\ when\ assiging\ values\ to\ an\ empty\ container,\ reserve\ will\ be\ called\ and\ }}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//force\ a\ reallocation,\ but\ underlying\ data\ pointer\ wont\ be\ initialized}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classft_1_1vector_aad30fa3aed1a94002a5585a84cc02f90}{assign}}(\ size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{T}}\&\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value}}\ )\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_af1d766249b6ee43c60d068022707ba4c}{reserve}}(\mbox{\hyperlink{classft_1_1random__access__iterator}{count}});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ =\ 0;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ <\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}};\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}++)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.construct(\&\_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{i}}],\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value}});}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \_size\ =\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*//TODO\ }}
+\DoxyCodeLine{00144\ \textcolor{comment}{\ \ \ \ \ \ \ \ template<\ class\ InputIt\ >}}
+\DoxyCodeLine{00145\ \textcolor{comment}{\ \ \ \ \ \ \ \ void\ assign(\ InputIt\ first,\ InputIt\ last\ )\ \{}}
+\DoxyCodeLine{00146\ \textcolor{comment}{}}
+\DoxyCodeLine{00147\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00148\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{allocator\_type}}\ \mbox{\hyperlink{classft_1_1vector_a0b6a5e0151029e8fd10db99df60c8754}{get\_allocator}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_allocator;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ \ \ \ /****************************Element\ access********************************/}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//TODO\ write\ correct\ exception}}
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{reference}}\ \mbox{\hyperlink{classft_1_1vector_aa750ccf39ef1ea81ab32e918a97f8089}{at}}(size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{pos}})\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classft_1_1random__access__iterator}{pos}}\ +\ 1\ >\ \_size)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::exception();}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{pos}}]);}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//TODO\ write\ correct\ exception}}
+\DoxyCodeLine{00190\ \ \ \ \ const\_reference\ \mbox{\hyperlink{classft_1_1vector_ac6353ea02a71e631aa0aae7b1efaf537}{at}}(size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{pos}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classft_1_1random__access__iterator}{pos}}\ +\ 1\ >\ \_size)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::exception();}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{pos}}]);}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{reference}}\ \mbox{\hyperlink{classft_1_1vector_a119394e7ed7d4ac9b38011c7ff58d792}{operator[]}}(size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{pos}})\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{pos}}]);}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{reference}}\ \mbox{\hyperlink{classft_1_1vector_a7a6ce0c571b331432622de19e5bc68d0}{front}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_data[0];}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00225\ \ \ \ \ const\_reference\ \mbox{\hyperlink{classft_1_1vector_adc3ec739479d333ba3f82cc4d27a5193}{front}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_data[0];}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{reference}}\ \mbox{\hyperlink{classft_1_1vector_ae00bf23b240ec6fb54b43918b4d57229}{back}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_data[\_size\ -\/\ 1];}
+\DoxyCodeLine{00236\ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00243\ \ \ \ \ const\_reference\ \mbox{\hyperlink{classft_1_1vector_ae370bee5a527464e4a34c83ac1faf86c}{back}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_data[\_size\ -\/\ 1];}
+\DoxyCodeLine{00245\ \ \ \ \ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}}\ \mbox{\hyperlink{classft_1_1vector_ac8a5d0804e3245523436f99d43e6e3e4}{data}}(\ \textcolor{keywordtype}{void}\ )\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_data;}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}}\ \mbox{\hyperlink{classft_1_1vector_a67e029fba4b18e1e1aefcacab57d81d7}{data}}(\ \textcolor{keywordtype}{void}\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_data;}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ /***************************Iterators**************************************/}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{iterator}}\ \mbox{\hyperlink{classft_1_1vector_a019a0193383318f60eb4d34372cd1610}{begin}}(\textcolor{keywordtype}{void})\ \{\textcolor{keywordflow}{return}\ \_data;\}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{const\_iterator}}\ \mbox{\hyperlink{classft_1_1vector_a52c3f2fc2bd1872737fd1a8812a3e559}{begin}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \_data;\}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00308\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{iterator}}\ \mbox{\hyperlink{classft_1_1vector_a68247c799a90f11a73c4466848bf840c}{end}}(\textcolor{keywordtype}{void})\ \{\textcolor{keywordflow}{return}\ \_data\ +\ \_size;\}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00323\ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{const\_iterator}}\ \mbox{\hyperlink{classft_1_1vector_aa6327a3957b7aedbeff329d429f773ea}{end}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \_data\ +\ \_size;\}}
+\DoxyCodeLine{00324\ \ \ \ \ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{comment}{//rbegin}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{comment}{//rend}}
+\DoxyCodeLine{00327\ \textcolor{comment}{\ \ \ \ /***************************Capacity***************************************/}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classft_1_1vector_a5fed14e27a0758ea7fe5c308149ec95a}{empty}}(\ \textcolor{keywordtype}{void}\ )\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (!\_size);}
+\DoxyCodeLine{00335\ \ \ \ \ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00344\ \ \ \ \ size\_type\ \mbox{\hyperlink{classft_1_1vector_a0da980239ba207294b03bf8750d8096c}{size}}(\ \textcolor{keywordtype}{void}\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_size);}
+\DoxyCodeLine{00346\ \ \ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00358\ \ \ \ \ size\_type\ \mbox{\hyperlink{classft_1_1vector_a7672a695bbd90e2cb78fdf3a0ebf38e4}{max\_size}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_allocator.max\_size());}
+\DoxyCodeLine{00360\ \ \ \ \ \}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{comment}{//TODO:\ write\ correct\ exception}}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{comment}{//TODO:\ probably\ better\ way\ to\ copy\ data\ over}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classft_1_1vector_af1d766249b6ee43c60d068022707ba4c}{reserve}}(size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{new\_cap}})\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classft_1_1random__access__iterator}{new\_cap}}\ >\ this-\/>\mbox{\hyperlink{classft_1_1vector_a7672a695bbd90e2cb78fdf3a0ebf38e4}{max\_size}}())\ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::exception();}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classft_1_1random__access__iterator}{new\_cap}}\ >\ \_capacity)\ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1random__access__iterator}{pointer}}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{newData}}\ =\ \_allocator.allocate(\mbox{\hyperlink{classft_1_1random__access__iterator}{new\_cap}});\ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_data)\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ copy\_data(\mbox{\hyperlink{classft_1_1random__access__iterator}{newData}});}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \_data\ =\ \mbox{\hyperlink{classft_1_1random__access__iterator}{newData}};}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \_capacity\ =\ \mbox{\hyperlink{classft_1_1random__access__iterator}{new\_cap}};}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00393\ \ \ \ \ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00402\ \ \ \ \ size\_type\ \mbox{\hyperlink{classft_1_1vector_a218654046a90bfae6ef2b65654fdf07f}{capacity}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_capacity);}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \textcolor{comment}{\ \ \ \ /***************************Modifiers**************************************/}}
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classft_1_1vector_a9cb9094847701b94444a6c5fb44df340}{clear}}(\ \textcolor{keywordtype}{void}\ )\ \{}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ =\ 0;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}\ <\ \_size;\ \mbox{\hyperlink{classft_1_1random__access__iterator}{i}}++)\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.destroy(\&\_data[\mbox{\hyperlink{classft_1_1random__access__iterator}{i}}]);}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \_size\ =\ 0;}
+\DoxyCodeLine{00424\ \ \ \ \ \}}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{//insert}}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{comment}{//erase\ }}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{comment}{//https://stackoverflow.com/questions/13822880/linked-\/list-\/vs-\/dynamic-\/array-\/for-\/implementing-\/a-\/stack-\/using-\/vector-\/class}}
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classft_1_1vector_a1b86e1845032df677c1506611c724bab}{push\_back}}(const\_reference\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value}})\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_size\ \ ==\ \_capacity)\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_af1d766249b6ee43c60d068022707ba4c}{reserve}}(\_capacity\ *\ 2\ |\ !\_capacity);}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \_allocator.construct(\&\_data[\_size],\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value}});}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \_size\ +=\ 1;}
+\DoxyCodeLine{00454\ \ \ \ \ \}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classft_1_1vector_ad5b97098508e54444404f2d96609d013}{pop\_back}}(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \_allocator.destroy(\_data\ +\ \_size\ -\/\ 1);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \_size-\/-\/;}
+\DoxyCodeLine{00469\ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ }
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{comment}{//TODO:\ use\ insert\ and\ erase}}
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classft_1_1vector_aa7e623994772ba0d355c6bfd597f258d}{resize}}(size\_type\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}},\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value\_type}}\ \mbox{\hyperlink{classft_1_1random__access__iterator}{val}}\ =\ \mbox{\hyperlink{classft_1_1random__access__iterator}{value\_type}}())\ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_size\ >\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}})\ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\_size\ !=\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}})\ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_ad5b97098508e54444404f2d96609d013}{pop\_back}}();\ \textcolor{comment}{//pop\ back\ already\ decreases\ size\ by\ 1}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_size\ <\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}})\ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classft_1_1random__access__iterator}{count}}\ >\ \_capacity)\ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classft_1_1vector_af1d766249b6ee43c60d068022707ba4c}{reserve}}(\_capacity\ *\ 2\ |\ !\_capacity);}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\_size\ <\ \mbox{\hyperlink{classft_1_1random__access__iterator}{count}})\ \{\ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_allocator.construct(\&\_data[\_size],\ \mbox{\hyperlink{classft_1_1random__access__iterator}{val}});}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_size++;}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ \ \ \ \ \}}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{comment}{//swap}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \};}
+\DoxyCodeLine{00510\ \}}
+
+\end{DoxyCode}

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include "../Includes/Vector.hpp"
+#include "../Includes/vector.hpp"
 
 #define IS_TRUE(x) ((x) ? (std::cout << "\e[1;32m[OK] \e[0m", true) : (std::cout << "\e[1;31m[KO] \e[0m", false))
 
@@ -214,6 +214,19 @@ void pop_back() {
     std::cout << log << std::endl;
 }
 
+
+void iterator() {
+    std::cout << __FUNCTION__ << ": ";
+    std::string log;
+    ft::vector<int> vf;
+    std::vector<int> vs;
+    //ft::vector<int>::iterator itf = vf.begin();
+    //std::vector<int>::iterator its = vs.begin();
+    IS_TRUE(vf.begin() == vf.end());
+    g_test(vf, vs, log); 
+    std::cout << log << std::endl;
+}
+
 int main ( void )
 {
     is_empty();
@@ -224,6 +237,7 @@ int main ( void )
     back();
     push_back();
     pop_back();
+    iterator();
     /*
     int *v1 = &(v.front());
     *v1 = 2;
