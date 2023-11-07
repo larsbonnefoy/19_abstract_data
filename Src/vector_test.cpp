@@ -33,7 +33,7 @@ std::string create_log_message(const char *str,  size_t vf = 0, size_t vstl = 0)
     std::string message = str;
     std::stringstream stream;
     if (!(vf == vstl)) { 
-        stream <<"\t-> "<< message << " | vf: " << vf << " vstl: " << vstl << std::endl;
+        stream <<"\t-> "<< message << " | " << vf << " != " << vstl << std::endl;
     }
     else {
         stream << message << std::endl;
@@ -43,13 +43,27 @@ std::string create_log_message(const char *str,  size_t vf = 0, size_t vstl = 0)
 }
 
 /**
- * Comapres value by value each vector
+ * Compares value by value each vector
  */
 template<typename U, typename T>
 bool value_compare(ft::vector<U> &v1, std::vector<T> &v2) {
     if (v1.size() != v2.size()) {return false;}
     for (size_t i = 0; i < v1.size(); i++) {
         if (v1[i] != v2[i]) {return false;}
+    }
+    return true;
+}
+
+/**
+ * Compares value by value each vector
+ */
+template<typename U, typename T>
+bool iterator_value_compare(ft::vector<U> &v1, std::vector<T> &v2) {
+    if (v1.size() != v2.size()) {return false;}
+    std::vector<int>::iterator its = v2.begin();
+    for (ft::vector<int>::iterator itf = v1.begin(); itf != v1.end(); itf++) {
+        *itf = *its;
+        its++;
     }
     return true;
 }
@@ -220,10 +234,53 @@ void iterator() {
     std::string log;
     ft::vector<int> vf;
     std::vector<int> vs;
-    //ft::vector<int>::iterator itf = vf.begin();
-    //std::vector<int>::iterator its = vs.begin();
-    IS_TRUE(vf.begin() == vf.end());
-    g_test(vf, vs, log); 
+    int int_tmp1;
+    int int_tmp2;
+    ft::random_access_iterator<int> iter_tmp1;
+    ft::random_access_iterator<int> iter_tmp2;
+    IS_TRUE(vf.begin() == vf.end()) ?  log.append("") : log.append("begin() should be equal to end() when container is empty\n");
+    for (size_t i = 0; i < 10; i++) {
+        vf.push_back(i);
+        vs.push_back(i);
+    
+    }
+    ft::vector<int>::iterator itf = vf.begin();
+    IS_TRUE(iterator_value_compare(vf, vs)) ? log.append("") : log.append(create_log_message(DIFF_VAL));
+
+    iter_tmp1 = ft::random_access_iterator<int>(itf);
+    IS_TRUE(itf[1] == iter_tmp1[1]) ? log.append("") : log.append("Copy Constructor not working\n");
+
+    iter_tmp2 = iter_tmp1;
+    IS_TRUE(iter_tmp2[0] == itf[0]) ? log.append("") : log.append("Copy assignment operator not working\n");
+
+    int_tmp1 = vf.begin()[0];
+    int_tmp2 = itf.base()[0];
+    IS_TRUE(int_tmp1 == int_tmp2) ? log.append("") : log.append(create_log_message("Dereference of begin should give value as base[0]", int_tmp1, int_tmp2));
+
+    IS_TRUE((itf != ++iter_tmp1)) ? log.append("") : log.append("Iterator should be ifferent than its following value, preincrement operator not working\n");
+
+    itf++;
+    itf--; 
+    IS_TRUE(itf == vf.begin());
+
+    int_tmp1 = *(itf + 2);
+    IS_TRUE(int_tmp1 = itf[2]);
+
+    iter_tmp1 = itf + 2;
+    IS_TRUE(itf < iter_tmp1) ? log.append("") : log.append("< operator not working\n");
+    IS_TRUE(++itf <= iter_tmp1) ? log.append("") : log.append("<= operator not working\n");
+    IS_TRUE(++itf <= iter_tmp1) ? log.append("") : log.append("<= operator not working\n");
+    IS_TRUE(itf == iter_tmp1) ? log.append("") : log.append("== operator not working\n");
+    IS_TRUE(!(itf < iter_tmp1)) ? log.append("") : log.append("< operator not working\n");
+    
+
+    //itf is at 2
+    iter_tmp1 -= 2; 
+    IS_TRUE(itf > iter_tmp1) ? log.append("") : log.append("> operator not working\n");
+    IS_TRUE(itf >= ++iter_tmp1) ? log.append("") : log.append(">= operator not working\n");
+    IS_TRUE(itf >= ++iter_tmp1) ? log.append("") : log.append(">= operator not working\n");
+    IS_TRUE(itf == iter_tmp1) ? log.append("") : log.append("== operator not working\n");
+    IS_TRUE(!(itf > iter_tmp1)) ? log.append("") : log.append("> operator not working\n");
     std::cout << log << std::endl;
 }
 
