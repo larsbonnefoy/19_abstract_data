@@ -20,16 +20,13 @@ struct iterator
 template<typename T>
 class random_access_iterator : public iterator<std::random_access_iterator_tag, T> {
 
-    typedef typename iterator<std::random_access_iterator_tag, T>::iterator_category    iterator_category;;
-    typedef typename iterator<std::random_access_iterator_tag, T>::value_type           value_type;
-    typedef typename iterator<std::random_access_iterator_tag, T>::difference_type      difference_type;
-    typedef typename iterator<std::random_access_iterator_tag, T>::pointer              pointer;
-    typedef typename iterator<std::random_access_iterator_tag, T>::reference            reference;
-
-    private:
-        pointer _ptr;
-
     public: 
+
+        typedef typename iterator<std::random_access_iterator_tag, T>::iterator_category    iterator_category;;
+        typedef typename iterator<std::random_access_iterator_tag, T>::value_type           value_type;
+        typedef typename iterator<std::random_access_iterator_tag, T>::difference_type      difference_type;
+        typedef typename iterator<std::random_access_iterator_tag, T>::pointer              pointer;
+        typedef typename iterator<std::random_access_iterator_tag, T>::reference            reference;
 
         /**
          * Default Constuctor 
@@ -160,28 +157,6 @@ class random_access_iterator : public iterator<std::random_access_iterator_tag, 
         }
 
         /**
-         * Integer Addition operator
-         *
-         * @param n - value to add to _ptr 
-         *
-         * @return copy of incremented iterator 
-         */
-        random_access_iterator operator+(int n) const {
-            return random_access_iterator(_ptr + n);
-        }
-
-        /**
-         * Intefer Substraction operator
-         *
-         * @param n - integer value to substract to _ptr 
-         *
-         * @return copy of decremented iterator 
-         */
-        random_access_iterator operator-(int n) const {
-            return random_access_iterator(_ptr - n);
-        }
-
-        /**
          * Compound decrement operations
          *
          * @return Reference to decremented iterator
@@ -209,6 +184,10 @@ class random_access_iterator : public iterator<std::random_access_iterator_tag, 
          * @return reference to _ptr + n element
          */
         reference operator[] (difference_type n) const {return _ptr[n];}
+
+    private:
+        pointer _ptr;
+
 };
 
 /**
@@ -295,4 +274,36 @@ bool operator>=(const random_access_iterator<Iter1>& x, const random_access_iter
     return x.base() >= y.base();
 }
 
+/**
+ * Function template.\n
+ * Returns distance between lhs and rhs
+ *
+ * @param n - value to add to
+ * @param it - iterator to add to
+ *
+ * @return boolean
+ *
+ * @remark, need this function to make it possible to write addition bewteen 
+ * integer and iterator where integer is on the lhs of operation
+ * https://stackoverflow.com/questions/4622330/operator-overloading-member-function-vs-non-member-function
+ *
+ */
+template<class Iterator>
+typename ft::random_access_iterator<Iterator> operator+(typename ft::random_access_iterator<Iterator>::difference_type n, const random_access_iterator<Iterator>& it) {
+    return (random_access_iterator<Iterator>(it + n));
+}
+
+/**
+ * Function template.\n
+ * Returns distance between lhs and rhs
+ *
+ * @param x - First iterator to compare
+ * @param y - Second iterator to compare
+ *
+ * @return boolean
+ */
+template<class Iterator>
+typename ft::random_access_iterator<Iterator>::difference_type operator-(const random_access_iterator<Iterator>& lhs, const random_access_iterator<Iterator>& rhs) {
+    return lhs.base() - rhs.base();
+}
 }

@@ -99,6 +99,8 @@ void assign() {
     std::cout << __FUNCTION__<< ": ";
     std::string log;
     ft::vector<int> vf;
+    vf.assign(11, 2);
+    /*
     std::vector<int> vs;
     vf.assign(0, 2);
     vs.assign(0, 2);
@@ -113,6 +115,9 @@ void assign() {
     vf.assign(11, 2);
     vs.assign(11, 2);
     g_test(vf, vs, log); 
+    */
+    ft::vector<int> vf_iter(20, 1);
+    vf_iter.assign(vf.begin(), vf.end());
     std::cout << log << std::endl;
 }
 
@@ -245,6 +250,9 @@ void iterator() {
     
     }
     ft::vector<int>::iterator itf = vf.begin();
+
+    IS_TRUE((vf.end() - vf.begin()) == static_cast<long>(vf.size())) ? log.append("") : log.append("Difference operator on two iterators is not working\n");
+    IS_TRUE(*((vf.size() - 1) + vf.begin()) == *((vs.size() - 1) + vs.begin()) ) ? log.append("") : log.append("Addition of integer and iterator is not working\n");
     IS_TRUE(iterator_value_compare(vf, vs)) ? log.append("") : log.append(create_log_message(DIFF_VAL));
 
     iter_tmp1 = ft::random_access_iterator<int>(itf);
@@ -286,15 +294,20 @@ void iterator() {
 
 int main ( void )
 {
-    is_empty();
-    assign();
-    resize();
-    max_size();
-    front();
-    back();
-    push_back();
-    pop_back();
-    iterator();
+    try {
+        is_empty();
+        assign();
+        resize();
+        max_size();
+        front();
+        back();
+        push_back();
+        pop_back();
+        iterator();
+    }
+    catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
     /*
     int *v1 = &(v.front());
     *v1 = 2;

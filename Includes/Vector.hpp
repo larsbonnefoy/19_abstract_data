@@ -13,37 +13,16 @@ namespace ft {
 
 template<class T,class Allocator = std::allocator<T> > class vector {
 
-    typedef T                                                       value_type;
-    typedef Allocator                                               allocator_type;
-    typedef std::size_t                                             size_type;
-    typedef std::ptrdiff_t                                          difference_type;
-    typedef typename allocator_type::reference                      reference;
-    typedef typename allocator_type::const_reference                const_reference;
-    typedef typename allocator_type::pointer                        pointer;
-    typedef typename allocator_type::const_pointer                  const_pointer;
-    
-
-    private:
-        pointer         _data;
-        allocator_type  _allocator;
-        size_type       _size;
-        size_type       _capacity;
-
-        /**
-         * Copies data from _data to newData.\n
-         * Destroys and deallocate previous _data.\n
-         */
-        void copy_data(pointer newData) {
-            for (size_type i = 0; i < _size; i++) {
-                _allocator.construct(&newData[i], _data[i]);
-            }
-            for (size_type i = 0; i < _size; i++) {
-                _allocator.destroy(&_data[i]);
-            }
-            _allocator.deallocate(_data, _capacity);
-        }
-
     public:
+
+        typedef T                                                       value_type;
+        typedef Allocator                                               allocator_type;
+        typedef std::size_t                                             size_type;
+        typedef std::ptrdiff_t                                          difference_type;
+        typedef typename allocator_type::reference                      reference;
+        typedef typename allocator_type::const_reference                const_reference;
+        typedef typename allocator_type::pointer                        pointer;
+        typedef typename allocator_type::const_pointer                  const_pointer;
         typedef typename ft::random_access_iterator<value_type>         iterator;   
         typedef typename ft::random_access_iterator<const value_type>   const_iterator;   
 
@@ -100,7 +79,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         }
 
         /**
-         * Destructs the vector
+         * Destroys all container elements and deallocates capacity
          */
         ~vector( void ) {
             for (size_type i = 0; i < _size; i++) {
@@ -109,16 +88,34 @@ template<class T,class Allocator = std::allocator<T> > class vector {
             _allocator.deallocate(_data, _capacity);
         }
         
-        //TODO
-        /* Iterator Constructor do to
-         template< class InputIt >
-            vector( InputIt first, InputIt last, const Allocator& alloc = Allocator() );
+        /*
+        //TODO: finish
+        template< class InputIt >
+        vector( InputIt first, InputIt last, const Allocator& alloc = Allocator()) 
+            : _allocator(alloc), _size(last - first), _capacity(last - first) {
+                _data = _allocator.allocate(_capacity);
+        }
+        */
+
+        /**
+         * Copies all the elements from x into the container, replacing current 
+         * contents and modifying size accordinly.
+         *
+         * @param other - another container used as source
+         *
+         * @remark Complexity: linear in the size of `*this` and `other`
+         */
+        
+        /*
+        vector& operator=(const vector& other) {
+            (void) other;
+            return *this;
+        }
         */
 
 
-        //TODO check if use Iterator to fill in the container
-        //BUG when assiging values to an empty container, reserve will be called and 
-        //force a reallocation, but underlying data pointer wont be initialized
+    /****************************Modifiers*************************************/
+
         /**
          * Replaces the contents with count copies of value.\n
          * Complexity: Linear in count
@@ -140,12 +137,22 @@ template<class T,class Allocator = std::allocator<T> > class vector {
             }
             _size = count;
         }
-        /*//TODO 
-        template< class InputIt >
-        void assign( InputIt first, InputIt last ) {
 
-        }
+        /**
+         * Replaces contents with copies in the range [first, last(
+         *
+         * @remark Behaviour undefined if one of the arguments is an iterator into *this
          */
+
+        template< class InputIt >
+        void assign( InputIt first, InputIt last) {
+            reserve(last - first);
+            for (size_type i = 0; first + i != last; i++) {
+                std::cout << *(first + i) << std::endl;
+                _allocator.construct(&_data[i], *(first + i));
+            }
+            _size = last - first;
+        }
 
         /**
          * Returns allocator associated with container 
@@ -154,9 +161,8 @@ template<class T,class Allocator = std::allocator<T> > class vector {
          *
          * @return associated allocator
          */
-        allocator_type get_allocator() const {
-            return _allocator;
-        }
+        allocator_type get_allocator() const {return _allocator;}
+
     /****************************Element access********************************/
     //TODO write correct exception
     /**
@@ -423,7 +429,39 @@ template<class T,class Allocator = std::allocator<T> > class vector {
         _size = 0;
     }
 
-    //insert
+    /**
+     * Insert value before pos;
+     *
+     * @param pos - iterator before which content will be inserted
+     *
+     * @param value - element value to insert
+     *
+     * @return Iterator pointing to the inserted value
+     */
+    iterator insert( const_iterator pos, const T& value ) {
+        (void) pos;
+        (void) value;
+
+    }
+
+    /**
+     * Insert count values before pos;
+     *
+     */
+    iterator insert( const_iterator pos, size_type count, const T& value );
+
+    /**
+     * Insert elements from [first ; last) before pos.\n
+     *
+     *
+     * @param first start of elements to insert
+     *
+     * @param last  last element to insert, not included
+     *
+     * @remark Undefined behaviour is first and last are iterators into *this
+     */
+    template< class InputIt >
+    iterator insert( const_iterator pos, InputIt first, InputIt last );
     //erase 
 
     //https://stackoverflow.com/questions/13822880/linked-list-vs-dynamic-array-for-implementing-a-stack-using-vector-class
@@ -503,8 +541,29 @@ template<class T,class Allocator = std::allocator<T> > class vector {
             }
         }
     }
-
+    
     //swap
+
+    private:
+        pointer         _data;
+        allocator_type  _allocator;
+        size_type       _size;
+        size_type       _capacity;
+
+        /**
+         * Copies data from _data to newData.\n
+         * Destroys and deallocate previous _data.\n
+         */
+        void copy_data(pointer newData) {
+            for (size_type i = 0; i < _size; i++) {
+                _allocator.construct(&newData[i], _data[i]);
+            }
+            for (size_type i = 0; i < _size; i++) {
+                _allocator.destroy(&_data[i]);
+            }
+            _allocator.deallocate(_data, _capacity);
+        }
+
 
 };
 }
