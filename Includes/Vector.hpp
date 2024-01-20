@@ -4,8 +4,6 @@
 #include <cstring>
 #include <exception>
 #include <iostream>
-#include <limits>
-#include <locale>
 #include <memory>
 #include "iterator.hpp"
 
@@ -563,7 +561,5 @@ template<class T,class Allocator = std::allocator<T> > class vector {
             }
             _allocator.deallocate(_data, _capacity);
         }
-
-
 };
 }

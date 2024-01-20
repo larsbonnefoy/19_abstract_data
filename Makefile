@@ -22,6 +22,11 @@ vector_test: $(OBJS_DIR)
 	c++ $(CFLAGS) -o $(NAME) $(OBJS_DIR)/vector_test.o
 	./abstract_data
 
+list_test: $(OBJS_DIR)
+	c++ $(CFLAGS) $(INCLUDES) -c $(SRC_DIR)/list_test.cpp -o $(OBJS_DIR)/list_test.o
+	c++ $(CFLAGS) -o $(NAME) $(OBJS_DIR)/list_test.o
+	./abstract_data
+
 clean:
 	rm -rf $(OBJS_DIR)
 
