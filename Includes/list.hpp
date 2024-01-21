@@ -40,15 +40,14 @@ private:
         _Node( const_reference value,
                node_pointer    prev,
                node_pointer    next,
-               allocator_type &alloc )
+               allocator_type &alloc,
+              node_pointer current)
             : _prev( prev ),
               _next( next ) {
 
-            // _data = alloc.allocate(1);
             alloc.construct( &_data, value );
-            if ( prev != nullptr ) { _prev->_next = this; }
-            if ( _next != nullptr ) { _next->_prev = this; }
-            std::cout << "Element " << _data << " created in List" << std::endl;
+            if ( prev != nullptr ) { _prev->_next = current; }
+            if ( next != nullptr ) { _next->_prev = current; }
         }
 
         /**
@@ -70,7 +69,6 @@ private:
          *          required to delete same value
          */
         void destroy(allocator_type &alloc) {
-            std::cout << "Node destructor Called" << std::endl;
             alloc.destroy(&_data);
 
         }
@@ -81,6 +79,10 @@ private:
 
         node_pointer get_prev() {
             return _prev;
+        }
+
+        reference get_data() {
+            return _data;
         }
 
     private:
@@ -110,7 +112,6 @@ public:
      * Goes through the whole list and deletes node one by one
      */
     ~list() {
-        std::cout << "Detructor called" << std::endl;
         node_pointer next = _head; 
         while (next != nullptr) {
             node_pointer toDel = next;
@@ -124,14 +125,39 @@ public:
      * @param value - value to add to the list
      */
     void push_front( const T &value ) {
-        _Node *to_insert = _node_allocator.allocate( 1 );
-        _node_allocator.construct( to_insert, _Node( value, nullptr, _head, _allocator ) );
+        node_pointer to_insert = _node_allocator.allocate( 1 );
+        _node_allocator.construct( to_insert, _Node( value, nullptr, _head, _allocator, to_insert) );
         _head = to_insert;
         //on first insertion tail = head = to_insert elem
         if (_tail == nullptr) {
             _tail = to_insert;
         }
         _count++; 
+    }
+
+    /**
+     * Adds value at end of list
+     * @param value - value to add to the list
+     */
+    void push_back( const T &value ) {
+        node_pointer to_insert = _node_allocator.allocate( 1 );
+        _node_allocator.construct( to_insert, _Node( value, _tail, nullptr, _allocator, to_insert) );
+        _tail = to_insert;
+        //on first insertion tail = head = to_insert elem
+        if (_head == nullptr) {
+            _head = to_insert;
+        }
+        _count++;
+    }
+
+    void display_list() {
+        node_pointer current = _head;
+        std::cout << "(";
+        while (current != nullptr) {
+            std::cout << current->get_data() << " ";
+            current = current->get_next();
+        }
+        std::cout << ")" << std::endl;
     }
 
 
@@ -157,7 +183,6 @@ private:
     *
     */
     void delete_node(node_pointer toDelete) {
-        (void) toDelete;
         toDelete->destroy(_allocator);
         _node_allocator.destroy(toDelete);
         _node_allocator.deallocate(toDelete, 1);

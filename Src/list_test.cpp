@@ -2,9 +2,16 @@
 #include <list>
 
 int main(){
+
+    std::list<int> test1;
     
     ft::list<int> test;
-    test.push_front(1);
-    test.push_front(2);
+    for (int i = 0; i < 10; i++) {
+        test.push_back(i);
+    }
+    for (int i = 10; i < 20; i++) {
+        test.push_front(i);
+    }
+    test.display_list();
 }
 
