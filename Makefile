@@ -4,7 +4,7 @@ SRC_DIR = Src
 
 # ===---===---===---===---===---===---===---===---===---===---===---===---
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -std=c++98 -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 INCLUDES = -I Includes
 
 # ===---===---===---===---===---===---===---===---===---===---===---===---
