@@ -561,5 +561,7 @@ template<class T,class Allocator = std::allocator<T> > class vector {
             }
             _allocator.deallocate(_data, _capacity);
         }
+
+
 };
 }

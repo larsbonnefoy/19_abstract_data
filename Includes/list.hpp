@@ -93,6 +93,10 @@ private:
 
     /*---------------------------Public list member function--------------------*/
 public:
+    /**
+     * Default constructor. Constructs empty container with default-constructed
+     * allocator
+     */
     list()
         : _head( 0x0 ),
           _tail( 0x0 ),
@@ -100,12 +104,33 @@ public:
           _allocator( allocator_type() ),
           _count( 0 ){};
 
+   /**
+     * Constructs empty container with given allocator alloc
+     */
     explicit list( const Allocator &alloc )
         : _head( 0x0 ),
           _tail( 0x0 ),
           _node_allocator( node_allocator() ),
           _allocator( alloc ),
           _count( 0 ){};
+
+    /**
+     * Constructs container with contents of the range [first, last)
+     * @param first - start Iterator
+     * @param last - end Iterator
+     */
+    template<class InputIt>
+    list(InputIt first, InputIt last, const Allocator& alloc = Allocator()) {
+    }
+
+
+    /**
+     * Copy constructor. Constructs container with copy of the contents of other
+     */
+    list(const list& other) {
+
+        
+    }
 
     /**
      * list destructor
@@ -118,6 +143,20 @@ public:
             next = toDel->get_next();
             delete_node(toDel);
         }
+    }
+
+    /**
+     * Copy assignment operator. Replaces contents with a copy of the contents
+     * of other.
+     * Linear in size of *this and other
+     */
+    list& operator=(const list& other) {
+        return ;
+    }
+
+
+    void assign(size_type count, const T& value) {
+        return ;
     }
 
     /**
@@ -148,6 +187,27 @@ public:
             _head = to_insert;
         }
         _count++;
+    }
+
+
+    /**
+     * //TODO: check with std::distance(begin(), end())
+     * Returns the number of elements in the container 
+     *
+     * @return Number of elements in the container
+     */
+    size_type size() const {
+        return _count;
+    }
+
+    /**
+     * 
+     * Verifies if container is empty
+     *
+     * @return bool - True if empty false else
+     */
+    bool empty() const {
+        return (size() == 0);
     }
 
     void display_list() {

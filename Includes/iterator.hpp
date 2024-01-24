@@ -1,7 +1,46 @@
 #pragma once
-#include <iterator>
+#include <cstddef>
 
 namespace ft {
+
+struct output_iterator_tag {};
+
+struct input_iterator_tag {};
+
+struct forward_iterator_tag : public input_iterator_tag {};
+
+struct bidirectional_iterator_tag : public forward_iterator_tag {};
+
+struct random_access_iterator_tag : public bidirectional_iterator_tag {};
+
+
+/**
+ * T stands for the type of the iterator
+ * => Can write code that for any iterator uses its category,
+ * type of elements,...
+ *
+ */
+template <typename T>
+struct iterator_traits {
+  typedef typename T::iterator_category iterator_category;  
+  typedef typename T::value_type        value_type;  
+  typedef typename T::difference_type   difference_type;  
+  typedef typename T::pointer           pointer;  
+  typedef typename T::reference         reference;  
+};
+
+
+/**
+ * Pointer specialization -> can also be used as iterators
+ */
+template <typename T>
+struct iterator_traits<T*> {
+  typedef random_access_iterator_tag iterator_category;  
+  typedef T                             value_type;  
+  typedef ptrdiff_t                     difference_type;  
+  typedef T*                            pointer;  
+  typedef T&                            reference;  
+};
 
 template<class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&> 
 struct iterator  
@@ -14,19 +53,20 @@ struct iterator
     //pointer and references to the underlying data type, not iterator itself
 };
 
-/**
- * Random Access Iterator Class
- */
+
+//TODO: check if implementation is required here??
+//Probably need it in specific class anyway
+/******************* Random Access Iterator Class ***************************/
 template<typename T>
-class random_access_iterator : public iterator<std::random_access_iterator_tag, T> {
+class random_access_iterator : public iterator<random_access_iterator_tag, T> {
 
     public: 
 
-        typedef typename iterator<std::random_access_iterator_tag, T>::iterator_category    iterator_category;;
-        typedef typename iterator<std::random_access_iterator_tag, T>::value_type           value_type;
-        typedef typename iterator<std::random_access_iterator_tag, T>::difference_type      difference_type;
-        typedef typename iterator<std::random_access_iterator_tag, T>::pointer              pointer;
-        typedef typename iterator<std::random_access_iterator_tag, T>::reference            reference;
+        typedef typename iterator<random_access_iterator_tag, T>::iterator_category    iterator_category;;
+        typedef typename iterator<random_access_iterator_tag, T>::value_type           value_type;
+        typedef typename iterator<random_access_iterator_tag, T>::difference_type      difference_type;
+        typedef typename iterator<random_access_iterator_tag, T>::pointer              pointer;
+        typedef typename iterator<random_access_iterator_tag, T>::reference            reference;
 
         /**
          * Default Constuctor 
@@ -306,4 +346,15 @@ template<class Iterator>
 typename ft::random_access_iterator<Iterator>::difference_type operator-(const random_access_iterator<Iterator>& lhs, const random_access_iterator<Iterator>& rhs) {
     return lhs.base() - rhs.base();
 }
+
+
+
+
+/******************* Random Access Iterator Class ***************************/
+
+
+
+
+
+
 }
