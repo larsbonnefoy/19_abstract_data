@@ -1,11 +1,12 @@
 #include "../Includes/list.hpp"
+#include <iterator>
 #include <list>
 
 int main(){
 
-    std::list<int> test1;
-
-    auto it = test1.end();
+    // std::list<int> test1;
+    //
+    // auto it = test1.end();
 
     
     ft::list<int> test;
@@ -16,5 +17,7 @@ int main(){
         test.push_front(i);
     }
     test.display_list();
+
+    ft::list<int>::iterator it = test.begin();
 }
 

@@ -1,23 +1,76 @@
 #pragma once
 
+#include <cstddef>
 #include <iostream>
 #include <memory>
 #include <ostream>
+#include "iterator.hpp"
 namespace ft {
     
 
 template < class T, class Allocator = std::allocator< T > > class list {
 
+    template<typename U>
+    class Iterator;
+
+    class _Node;
+
+
     /*------------------------------ Member Types -----------------------------*/
 public:
-    typedef T                                        value_type;
-    typedef Allocator                                allocator_type;
-    typedef std::size_t                              size_type;
-    typedef std::ptrdiff_t                           difference_type;
-    typedef typename allocator_type::reference       reference;
-    typedef typename allocator_type::const_reference const_reference;
-    typedef typename allocator_type::pointer         pointer;
-    typedef typename allocator_type::const_pointer   const_pointer;
+    typedef T                                           value_type;
+    typedef Allocator                                   allocator_type;
+    typedef std::size_t                                 size_type;
+    typedef std::ptrdiff_t                              difference_type;
+    typedef typename allocator_type::reference          reference;
+    typedef typename allocator_type::const_reference    const_reference;
+    typedef typename allocator_type::pointer            pointer;
+    typedef typename allocator_type::const_pointer      const_pointer;
+    typedef Iterator< value_type >                      iterator;
+    typedef Iterator< const value_type >                const_iterator;
+
+private :
+
+    typedef typename allocator_type::template rebind< _Node >::other    node_allocator;
+    typedef typename node_allocator::reference                          node_reference;
+    typedef typename node_allocator::const_reference                    node_const_reference;
+    typedef typename node_allocator::pointer                            node_pointer;
+    typedef typename node_allocator::const_pointer                      node_const_pointer;
+
+    /*---------------------------Iterator Implementation--------------------*/
+    /**
+     * Requirements for typedefs ?
+     * normally already in struct iterator
+     */
+    template<typename U>
+    class Iterator : public ft::iterator<ft::bidirectional_iterator_tag, U> {
+
+        public:
+
+        Iterator() : _node(nullptr) {}
+        Iterator(node_pointer node) : _node(node) {}
+        Iterator(Iterator &other) : _node(other._node){}
+        ~Iterator(){}
+
+        iterator &operator=(const iterator &other) {
+            if (&other != this)
+                _node = other._node;
+            return *this;
+        }
+
+        reference operator*(void) {return _node.get_data();}
+        pointer operator->(void) {return &(_node.get_data());}
+
+        private:
+            typedef Iterator< value_type >                      iterator;
+            typedef Iterator< const value_type >                const_iterator;
+
+            node_pointer _node;
+
+        
+    };
+
+
 
     /*-----------------------Inner ListElement class--------------------------*/
 
@@ -91,6 +144,8 @@ private:
         node_pointer _next;
     };
 
+
+
     /*---------------------------Public list member function--------------------*/
 public:
     /**
@@ -115,24 +170,6 @@ public:
           _count( 0 ){};
 
     /**
-     * Constructs container with contents of the range [first, last)
-     * @param first - start Iterator
-     * @param last - end Iterator
-     */
-    template<class InputIt>
-    list(InputIt first, InputIt last, const Allocator& alloc = Allocator()) {
-    }
-
-
-    /**
-     * Copy constructor. Constructs container with copy of the contents of other
-     */
-    list(const list& other) {
-
-        
-    }
-
-    /**
      * list destructor
      * Goes through the whole list and deletes node one by one
      */
@@ -145,19 +182,6 @@ public:
         }
     }
 
-    /**
-     * Copy assignment operator. Replaces contents with a copy of the contents
-     * of other.
-     * Linear in size of *this and other
-     */
-    list& operator=(const list& other) {
-        return ;
-    }
-
-
-    void assign(size_type count, const T& value) {
-        return ;
-    }
 
     /**
      * Adds value in front of list
@@ -221,13 +245,16 @@ public:
     }
 
 
+    /*--------------Iterator Functions---------------*/
+    /**
+     * Returns iterator to start of container
+     */
+    iterator begin() {
+        return iterator(_head);
+    }
+    
     /*--------------list private member attributes and functions---------------*/
 private:
-    typedef typename allocator_type::template rebind< _Node >::other    node_allocator;
-    typedef typename node_allocator::reference                          node_reference;
-    typedef typename node_allocator::const_reference                    node_const_reference;
-    typedef typename node_allocator::pointer                            node_pointer;
-    typedef typename node_allocator::const_pointer                      node_const_pointer;
 
     node_pointer    _head;
     node_pointer    _tail;
@@ -248,4 +275,9 @@ private:
         _node_allocator.deallocate(toDelete, 1);
     } 
 };
+
+
+
+
+
 }
