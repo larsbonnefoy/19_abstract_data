@@ -146,12 +146,11 @@ private:
         _Node( const_reference value,
                node_pointer    prev,
                node_pointer    next,
-               allocator_type &alloc,
               node_pointer current)
-            : _prev( prev ),
+            : _data(value), 
+              _prev( prev ),
               _next( next ) {
-
-            alloc.construct( &_data, value );
+            
             if ( prev != nullptr ) { _prev->_next = current; }
             if ( next != nullptr ) { _next->_prev = current; }
         }
@@ -242,7 +241,7 @@ public:
      */
     void push_front( const T &value ) {
         node_pointer to_insert = _node_allocator.allocate( 1 );
-        _node_allocator.construct( to_insert, _Node( value, nullptr, _head, _allocator, to_insert) );
+        _node_allocator.construct( to_insert, _Node( value, nullptr, _head, to_insert) );
         _head = to_insert;
         //on first insertion tail = head = to_insert elem
         if (_tail == nullptr) {
@@ -257,7 +256,7 @@ public:
      */
     void push_back( const T &value ) {
         node_pointer to_insert = _node_allocator.allocate( 1 );
-        _node_allocator.construct( to_insert, _Node( value, _tail, nullptr, _allocator, to_insert) );
+        _node_allocator.construct( to_insert, _Node( value, _tail, nullptr, to_insert) );
         _tail = to_insert;
         //on first insertion tail = head = to_insert elem
         if (_head == nullptr) {
@@ -305,11 +304,25 @@ public:
     iterator begin() {
         return iterator(_head); 
     }
+
+    /**
+     * Returns const iterator to start of container
+     */
+    const_iterator begin() const {
+        return iterator(_head);
+    }
     
     /**
      * Returns iterator one past the end to start of container
      */
     iterator end() {
+        return iterator(nullptr);
+    }
+
+    /**
+     * Returns const iterator one past the end to start of container
+     */
+    const_iterator end() const {
         return iterator(nullptr);
     }
     /*--------------list private member attributes and functions---------------*/
