@@ -13,11 +13,13 @@ template < class T, class Allocator = std::allocator< T > > class list {
     template<typename U>
     class Iterator;
 
+
     class _Node;
 
 
     /*------------------------------ Member Types -----------------------------*/
 public:
+
     typedef T                                           value_type;
     typedef Allocator                                   allocator_type;
     typedef std::size_t                                 size_type;
@@ -45,7 +47,10 @@ private :
     template<typename U>
     class Iterator : public ft::iterator<ft::bidirectional_iterator_tag, U> {
 
+
         public:
+
+        friend class list<T, Allocator>;
 
         Iterator() : _node(nullptr) {}
         Iterator(node_pointer node) : _node(node) {}
@@ -335,18 +340,34 @@ public:
 
     /*-----------------------Modifiers-----------------------*/
     /**
+     * //TODO: add const iterator and check validity of insertion
+     * Inserts value before pos;
+     * @param value - value to add to the list
+     */
+    iterator insert( iterator pos, const T& value ) {
+        node_pointer to_insert = _node_allocator.allocate(1);
+        if (pos._node) {
+            _node_allocator.construct( to_insert, _Node( value, pos._node->get_prev(), pos._node, to_insert) );
+        }
+        else {
+            _node_allocator.construct( to_insert, _Node( value, nullptr, nullptr, to_insert) );
+        }
+        if (pos._node == _head) {
+            _head = to_insert;
+        }
+        if (pos._node == _tail) {
+            _tail = to_insert;
+        }
+        _count++; 
+        return iterator(to_insert);
+    }
+
+    /**
      * Adds value in front of list
      * @param value - value to add to the list
      */
     void push_front( const T &value ) {
-        node_pointer to_insert = _node_allocator.allocate( 1 );
-        _node_allocator.construct( to_insert, _Node( value, nullptr, _head, to_insert) );
-        _head = to_insert;
-        //on first insertion tail = head = to_insert elem
-        if (_tail == nullptr) {
-            _tail = to_insert;
-        }
-        _count++; 
+        insert(begin(), value);
     }
 
     /**
@@ -354,14 +375,7 @@ public:
      * @param value - value to add to the list
      */
     void push_back( const T &value ) {
-        node_pointer to_insert = _node_allocator.allocate( 1 );
-        _node_allocator.construct( to_insert, _Node( value, _tail, nullptr, to_insert) );
-        _tail = to_insert;
-        //on first insertion tail = head = to_insert elem
-        if (_head == nullptr) {
-            _head = to_insert;
-        }
-        _count++;
+        insert(end(), value);
     }
 
 

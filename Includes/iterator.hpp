@@ -347,14 +347,13 @@ typename ft::random_access_iterator<Iterator>::difference_type operator-(const r
     return lhs.base() - rhs.base();
 }
 
+/**
+* Reverse iterator class
+*/
+template <class Iterator> class reverse_iterator {
+    public:
+        typedef Iterator iterator_type;
 
-
-
-/******************* Random Access Iterator Class ***************************/
-
-
-
-
-
+};
 
 }
