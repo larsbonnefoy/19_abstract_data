@@ -200,6 +200,7 @@ private:
 
     /*---------------------------Public list member function--------------------*/
 public:
+    /******************************Member function**********************/
     /**
      * Default constructor. Constructs empty container with default-constructed
      * allocator
@@ -235,6 +236,104 @@ public:
     }
 
 
+    /******************************Element access***********************/
+    /**
+     * Returns reference to first element in container
+     * @returns reference to first element in container
+     */
+    reference front() {
+        return (_head->get_data());
+    }
+    
+    /**
+     * Returns const reference to first element in container
+     * @returns const reference to first element in container
+     */
+    const_reference front() const {
+        return (_head->get_data());
+    }
+
+    /**
+     * Returns reference to last element in container
+     * @returns reference to last element in container
+     */
+    reference back() {
+        return (_tail->get_data());
+    }
+    
+    /**
+     * Returns const reference to last element in container
+     * @returns const reference to last element in container
+     */
+    const_reference back() const {
+        return (_tail->get_data());
+    }
+
+    /*--------------Iterator Functions---------------*/
+    /**
+     * Returns iterator to start of container
+     */
+    iterator begin() {
+        return iterator(_head); 
+    }
+
+    /**
+     * Returns const iterator to start of container
+     */
+    const_iterator begin() const {
+        return iterator(_head);
+    }
+    
+    /**
+     * Returns iterator one past the end to start of container
+     */
+    iterator end() {
+        return iterator(nullptr);
+    }
+
+    /**
+     * Returns const iterator one past the end to start of container
+     */
+    const_iterator end() const {
+        return iterator(nullptr);
+    }
+
+    /*-----------------------Capacity------------------------*/
+    /**
+     * //TODO: check with std::distance(begin(), end())
+     * Returns the number of elements in the container 
+     *
+     * @return Number of elements in the container
+     */
+    size_type size() const {
+        return _count;
+    }
+
+    /**
+     * 
+     * Verifies if container is empty
+     *
+     * @return bool - True if empty false else
+     */
+    bool empty() const {
+        return (size() == 0);
+    }
+
+    /*
+     * Returns the maximum number of elements that the list is able to hold 
+     * due to system or library implementation limits.\n
+     * Theoretical limit given by std::numeric_limits<difference_type>::max(),
+     * at runtime the real value might be smaller given available RAM space.
+     * 
+     * @param none
+     *
+     * @returns Maximum number of elements 
+     */
+    size_type max_size(void) const {
+        return (_allocator.max_size());
+    }
+
+    /*-----------------------Modifiers-----------------------*/
     /**
      * Adds value in front of list
      * @param value - value to add to the list
@@ -266,26 +365,6 @@ public:
     }
 
 
-    /**
-     * //TODO: check with std::distance(begin(), end())
-     * Returns the number of elements in the container 
-     *
-     * @return Number of elements in the container
-     */
-    size_type size() const {
-        return _count;
-    }
-
-    /**
-     * 
-     * Verifies if container is empty
-     *
-     * @return bool - True if empty false else
-     */
-    bool empty() const {
-        return (size() == 0);
-    }
-
     void display_list() {
         node_pointer current = _head;
         std::cout << "(";
@@ -297,34 +376,6 @@ public:
     }
 
 
-    /*--------------Iterator Functions---------------*/
-    /**
-     * Returns iterator to start of container
-     */
-    iterator begin() {
-        return iterator(_head); 
-    }
-
-    /**
-     * Returns const iterator to start of container
-     */
-    const_iterator begin() const {
-        return iterator(_head);
-    }
-    
-    /**
-     * Returns iterator one past the end to start of container
-     */
-    iterator end() {
-        return iterator(nullptr);
-    }
-
-    /**
-     * Returns const iterator one past the end to start of container
-     */
-    const_iterator end() const {
-        return iterator(nullptr);
-    }
     /*--------------list private member attributes and functions---------------*/
 private:
 

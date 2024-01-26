@@ -26,13 +26,13 @@ void assign( InputIt first, InputIt last );
 [ ] allocator_type get_allocator() const;
 
 ### Element access
-[ ] reference front();
+[x] reference front();
 
-[ ] const_reference front() const;
+[x] const_reference front() const;
 
-[ ] reference back();
+[x] reference back();
 
-[ ] const_reference back() const;
+[x] const_reference back() const;
 
 ### IT 
 [x] const_iterator begin() const;
@@ -44,7 +44,12 @@ void assign( InputIt first, InputIt last );
 [ ] const_reverse_iterator rbegin() const;
 
 ### Capacity
-[ ] size_type max_size() const;
+
+[X] bool empty() const;
+
+[X] size_type size() const;
+
+[X] size_type max_size() const;
 
 ### Modifiers
 [ ] void clear();

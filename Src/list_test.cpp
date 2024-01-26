@@ -24,6 +24,7 @@ int main(){
     std::cout << *(++it) << std::endl;
     std::cout << *(it--) << std::endl;
     std::cout << *(--it) << std::endl;
-    // ft::list<int>::iterator it2(it);
+    std::cout << test.front() << std::endl;
+    std::cout << test.back() << std::endl;
 }
 
