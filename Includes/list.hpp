@@ -49,7 +49,7 @@ private :
 
         Iterator() : _node(nullptr) {}
         Iterator(node_pointer node) : _node(node) {}
-        Iterator(Iterator &other) : _node(other._node){}
+        Iterator(const Iterator &other) : _node(other._node){} 
         ~Iterator(){}
 
         iterator &operator=(const iterator &other) {
@@ -58,12 +58,65 @@ private :
             return *this;
         }
 
-        reference operator*(void) {return _node.get_data();}
-        pointer operator->(void) {return &(_node.get_data());}
+        //reference and pointer are of the underlying type U
+        reference operator*(void) {return _node->get_data();}
+        pointer operator->(void) {return &(operator*());}
+
+        /**
+         * Pre increment iterator
+         * Returns incremented object directly
+         */
+        iterator &operator++() {
+            _node = _node->get_next();
+            return *this;
+        }
+
+        /**
+         * Post increment iterator
+         * Returns copy of item before increment
+         */
+        iterator operator++(int) {
+            iterator old = iterator(*this);
+            _node = _node->get_next();
+            return old;
+        } 
+
+        /**
+         * Pre decr iterator
+         * Returns decr object directly
+         */
+        iterator &operator--() {
+            _node = _node->get_prev();
+            return *this;
+        }
+
+        /**
+         * Post decr iterator
+         * Returns copy of item before decr
+         */
+        iterator operator--(int) {
+            iterator old = iterator(*this);
+            _node = _node->get_prev();
+            return old;
+        } 
+
+        /**
+         * Equal operator
+         * @returns true if equal
+         */
+        bool operator==(const iterator& rhs) const {
+            return (_node == rhs._node);
+        }
+
+        /**
+         * Difference operator
+         * @returns false if different
+         */
+        bool operator!=(const iterator& rhs) const {
+            return (_node != rhs._node);
+        }
 
         private:
-            typedef Iterator< value_type >                      iterator;
-            typedef Iterator< const value_type >                const_iterator;
 
             node_pointer _node;
 
@@ -250,9 +303,15 @@ public:
      * Returns iterator to start of container
      */
     iterator begin() {
-        return iterator(_head);
+        return iterator(_head); 
     }
     
+    /**
+     * Returns iterator one past the end to start of container
+     */
+    iterator end() {
+        return iterator(nullptr);
+    }
     /*--------------list private member attributes and functions---------------*/
 private:
 
