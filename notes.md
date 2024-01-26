@@ -14,7 +14,7 @@ addr to constructor
 [ ] explicit list( size_type count, const T& value = T(), const Allocator& alloc = Allocator() );
 
 [ ] template< class InputIt > 
-[ ] list( InputIt first, InputIt last, const Allocator& alloc = Allocator() );
+list( InputIt first, InputIt last, const Allocator& alloc = Allocator() );
 
 [ ] list& operator=( const list& other );
 
@@ -27,15 +27,20 @@ void assign( InputIt first, InputIt last );
 
 ### Element access
 [ ] reference front();
+
 [ ] const_reference front() const;
 
 [ ] reference back();
+
 [ ] const_reference back() const;
 
 ### IT 
 [x] const_iterator begin() const;
+
 [x] const_iterator end() const;
+
 [ ] reverse_iterator rbegin();
+
 [ ] const_reverse_iterator rbegin() const;
 
 ### Capacity
@@ -45,18 +50,22 @@ void assign( InputIt first, InputIt last );
 [ ] void clear();
 
 [ ] iterator insert( const_iterator pos, const T& value );
+
 [ ] iterator insert( const_iterator pos, size_type count, const T& value );
 
 [ ] template< class InputIt >
 iterator insert( const_iterator pos, InputIt first, InputIt last );
 
 [ ] iterator erase( iterator pos );
+
 [ ] iterator erase( iterator first, iterator last );
 
 [ ] void pop_back();
+
 [ ] void pop_front();
 
 [ ] void resize( size_type count );
+
 [ ] void resize( size_type count, const value_type& value );
 
 [ ] void swap( list& other );
@@ -65,10 +74,12 @@ iterator insert( const_iterator pos, InputIt first, InputIt last );
 [ ] void merge( list& other );
 
 [ ] template< class Compare >
-[ ] void merge( list& other, Compare comp );
+void merge( list& other, Compare comp );
 
 [ ] void splice( const_iterator pos, list& other );
+
 [ ] void splice( const_iterator pos, list& other, const_iterator it );
+
 [ ] void splice( const_iterator pos, list& other, const_iterator first, const_iterator last);
 
 [ ] void remove( const T& value );
