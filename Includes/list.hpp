@@ -146,6 +146,7 @@ private:
         typedef typename node_allocator::pointer         node_pointer;
         typedef typename node_allocator::const_pointer   node_const_pointer;
 
+        //Used to init _past_end node
         _Node() : _prev( nullptr ), _next( nullptr ){};
 
         _Node( const_reference value,
@@ -180,7 +181,6 @@ private:
          */
         void destroy(allocator_type &alloc) {
             alloc.destroy(&_data);
-
         }
 
         node_pointer get_next() {
@@ -195,10 +195,14 @@ private:
             return _data;
         }
 
+        void set_prev(node_pointer node) {
+            _prev = node;
+        }
+
     private:
-        value_type   _data;
-        node_pointer _prev;
-        node_pointer _next;
+        value_type      _data;
+        node_pointer    _prev;
+        node_pointer    _next;
     };
 
 
@@ -212,32 +216,40 @@ public:
      */
     list()
         : _head( 0x0 ),
-          _tail( 0x0 ),
-          _node_allocator( node_allocator() ),
-          _allocator( allocator_type() ),
-          _count( 0 ){};
+        _node_allocator( node_allocator() ),
+        _allocator( allocator_type() ),
+        _count( 0 ) {
+            _past_end = _node_allocator.allocate(1);
+            _node_allocator.construct(_past_end, _Node());
+        };
 
    /**
      * Constructs empty container with given allocator alloc
      */
     explicit list( const Allocator &alloc )
         : _head( 0x0 ),
-          _tail( 0x0 ),
-          _node_allocator( node_allocator() ),
-          _allocator( alloc ),
-          _count( 0 ){};
+        _node_allocator( node_allocator() ),
+        _allocator( alloc ),
+        _count( 0 ){
+            _past_end = _node_allocator.allocate(1);
+            _node_allocator.construct(_past_end, _Node());
+        };
 
     /**
      * list destructor
      * Goes through the whole list and deletes node one by one
+     * Special treatment for past_end node as it does not hold
+     * value_type;
      */
     ~list() {
         node_pointer next = _head; 
-        while (next != nullptr) {
+        while (next != _past_end) {
             node_pointer toDel = next;
             next = toDel->get_next();
             delete_node(toDel);
         }
+        _node_allocator.destroy(_past_end);
+        _node_allocator.deallocate(_past_end, 1);
     }
 
 
@@ -263,7 +275,7 @@ public:
      * @returns reference to last element in container
      */
     reference back() {
-        return (_tail->get_data());
+        return (_past_end->get_prev());
     }
     
     /**
@@ -271,7 +283,7 @@ public:
      * @returns const reference to last element in container
      */
     const_reference back() const {
-        return (_tail->get_data());
+        return (_past_end->get_prev());
     }
 
     /*--------------Iterator Functions---------------*/
@@ -293,14 +305,14 @@ public:
      * Returns iterator one past the end to start of container
      */
     iterator end() {
-        return iterator(nullptr);
+        return iterator(_past_end);
     }
 
     /**
      * Returns const iterator one past the end to start of container
      */
     const_iterator end() const {
-        return iterator(nullptr);
+        return iterator(_past_end);
     }
 
     /*-----------------------Capacity------------------------*/
@@ -349,14 +361,16 @@ public:
         if (pos._node) {
             _node_allocator.construct( to_insert, _Node( value, pos._node->get_prev(), pos._node, to_insert) );
         }
+        //if _node == nullptr: we insert first element with begin();
+        //=> set next element as past_end
         else {
-            _node_allocator.construct( to_insert, _Node( value, nullptr, nullptr, to_insert) );
+            _node_allocator.construct( to_insert, _Node( value, nullptr, _past_end, to_insert) );
         }
         if (pos._node == _head) {
             _head = to_insert;
         }
-        if (pos._node == _tail) {
-            _tail = to_insert;
+        if (pos._node == _past_end) {
+            _past_end->set_prev(to_insert);
         }
         _count++; 
         return iterator(to_insert);
@@ -382,7 +396,7 @@ public:
     void display_list() {
         node_pointer current = _head;
         std::cout << "(";
-        while (current != nullptr) {
+        while (current != _past_end) {
             std::cout << current->get_data() << " ";
             current = current->get_next();
         }
@@ -394,10 +408,13 @@ public:
 private:
 
     node_pointer    _head;
-    node_pointer    _tail;
     node_allocator  _node_allocator;
     allocator_type  _allocator;
     size_type       _count;
+    
+    //sentinel node used to store past the end element 
+    //=> _tail->next = _past_end and _past_end->prev = _end;
+    node_pointer    _past_end;
 
     /**
     * Deletes contents of a node with help of _allocator (allocator on type T)
@@ -412,9 +429,4 @@ private:
         _node_allocator.deallocate(toDelete, 1);
     } 
 };
-
-
-
-
-
 }

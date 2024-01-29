@@ -9,6 +9,8 @@ addr to constructor
 
 -Iterator invalidation
 
+-> Delete tail operator and use past_end instead, tail = past_end->prev;
+
 ## Functions to add:
 ### Member functions
 [ ] explicit list( size_type count, const T& value = T(), const Allocator& alloc = Allocator() );
