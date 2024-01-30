@@ -12,7 +12,7 @@ namespace ft {
 
 template < class T, class Allocator = std::allocator< T > > class list {
 
-    template<bool CONST> struct iterator_impl;
+    template<typename U> class Iterator;
 
     class _Node;
 
@@ -28,10 +28,10 @@ public:
     typedef typename allocator_type::const_reference    const_reference;
     typedef typename allocator_type::pointer            pointer;
     typedef typename allocator_type::const_pointer      const_pointer;
-    typedef iterator_impl<false>                        iterator;
-    typedef iterator_impl<true>                         const_iterator;
-    typedef reverse_iterator<const_iterator>            const_reverse_iterator;
-    typedef reverse_iterator<iterator>                  reverse_iterator;
+    typedef Iterator< value_type >                      iterator;
+    typedef Iterator< const value_type >                const_iterator;
+    typedef reverse_iterator<const_iterator >           const_reverse_iterator;
+    typedef reverse_iterator<iterator >                 reverse_iterator;
 
 private :
 
@@ -42,28 +42,22 @@ private :
     typedef typename node_allocator::const_pointer                      node_const_pointer;
 
     /*---------------------------Iterator Implementation--------------------*/
-
-    template<bool IS_CONST> struct iterator_impl : public ft::iterator<ft::bidirectional_iterator_tag, value_type> 
-    {
-        //!! value type can obv be const or not
-        typedef typename ft::conditional<IS_CONST, const T, T>::type value_type;
-
+    template<typename U>
+    class Iterator : public ft::iterator<ft::bidirectional_iterator_tag, U> {
+        public:
         friend class list<T, Allocator>;
-
-        iterator_impl(node_pointer node) : _node(node) {}
-        iterator_impl(const iterator_impl &other) : _node(other._node){} 
-        ~iterator_impl(){}
-
+        Iterator() : _node(nullptr) {}
+        Iterator(node_pointer node) : _node(node) {}
+        Iterator(const Iterator &other) : _node(other._node){} 
+        ~Iterator(){}
         iterator &operator=(const iterator &other) {
             if (&other != this)
                 _node = other._node;
             return *this;
         }
-
-
-        value_type& operator*(void) {return _node->get_data();}
-        value_type& operator->(void) {return &(operator*());}
-
+        //reference and pointer are of the underlying type U
+        reference operator*(void) {return _node->get_data();}
+        pointer operator->(void) {return &(operator*());}
         /**
          * Pre increment iterator
          * Returns incremented object directly
@@ -72,7 +66,6 @@ private :
             _node = _node->get_next();
             return *this;
         }
-
         /**
          * Post increment iterator
          * Returns copy of item before increment
@@ -82,7 +75,6 @@ private :
             _node = _node->get_next();
             return old;
         } 
-
         /**
          * Pre decr iterator
          * Returns decr object directly
@@ -91,7 +83,6 @@ private :
             _node = _node->get_prev();
             return *this;
         }
-
         /**
          * Post decr iterator
          * Returns copy of item before decr
@@ -101,7 +92,6 @@ private :
             _node = _node->get_prev();
             return old;
         } 
-
         /**
          * Equal operator
          * @returns true if equal
@@ -109,7 +99,6 @@ private :
         bool operator==(const iterator& rhs) const {
             return (_node == rhs._node);
         }
-
         /**
          * Difference operator
          * @returns false if different
@@ -117,13 +106,13 @@ private :
         bool operator!=(const iterator& rhs) const {
             return (_node != rhs._node);
         }
-        
+
         //implicit conversion from iterator to const_iterator
         operator const_iterator () const { return const_iterator(_node) ; }
 
-        private: 
+        private:
             node_pointer _node;
-
+        
     };
 
     /*-----------------------Inner ListElement class--------------------------*/
@@ -327,6 +316,7 @@ public:
     const_reverse_iterator rend() const {
         return const_reverse_iterator(_head);
     }
+
     /*-----------------------Capacity------------------------*/
     /**
      * //TODO: check with std::distance(begin(), end())

@@ -41,17 +41,19 @@ void assign( InputIt first, InputIt last );
 
 [x] iterator end();;
 
-[ ] const_iterator begin() const;
+[x] const_iterator begin() const;
 
-[ ] const_iterator end() const;
+[x] const_iterator end() const;
 
 [x] reverse_iterator rbegin();
 
 [x] reverse_iterator rend();
 
-[ ] const_reverse_iterator rbegin() const;
+[x] reverse_iterator rend();
 
-[ ] const_reverse_iterator rend() const;
+[x] const_reverse_iterator rbegin() const;
+
+[x] const_reverse_iterator rend() const;
 
 ### Capacity
 
