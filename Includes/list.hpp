@@ -30,6 +30,7 @@ public:
     typedef typename allocator_type::const_pointer      const_pointer;
     typedef Iterator< value_type >                      iterator;
     typedef Iterator< const value_type >                const_iterator;
+    typedef reverse_iterator<Iterator<value_type> >     reverse_iterator;
 
 private :
 
@@ -313,6 +314,15 @@ public:
      */
     const_iterator end() const {
         return iterator(_past_end);
+    }
+
+
+    reverse_iterator rbegin() {
+        return reverse_iterator(_past_end);
+    }
+
+    reverse_iterator rend() {
+        return reverse_iterator(_head);
     }
 
     /*-----------------------Capacity------------------------*/
