@@ -5,14 +5,14 @@
 #include <memory>
 #include <ostream>
 #include "iterator.hpp"
+#include "type_traits.hpp"
+
 namespace ft {
     
 
 template < class T, class Allocator = std::allocator< T > > class list {
 
-    template<typename U>
-    class Iterator;
-
+    template<bool CONST> struct iterator_impl;
 
     class _Node;
 
@@ -28,9 +28,10 @@ public:
     typedef typename allocator_type::const_reference    const_reference;
     typedef typename allocator_type::pointer            pointer;
     typedef typename allocator_type::const_pointer      const_pointer;
-    typedef Iterator< value_type >                      iterator;
-    typedef Iterator< const value_type >                const_iterator;
-    typedef reverse_iterator<Iterator<value_type> >     reverse_iterator;
+    typedef iterator_impl<false>                        iterator;
+    typedef iterator_impl<true>                         const_iterator;
+    typedef reverse_iterator<const_iterator>            const_reverse_iterator;
+    typedef reverse_iterator<iterator>                  reverse_iterator;
 
 private :
 
@@ -41,22 +42,17 @@ private :
     typedef typename node_allocator::const_pointer                      node_const_pointer;
 
     /*---------------------------Iterator Implementation--------------------*/
-    /**
-     * Requirements for typedefs ?
-     * normally already in struct iterator
-     */
-    template<typename U>
-    class Iterator : public ft::iterator<ft::bidirectional_iterator_tag, U> {
 
-
-        public:
+    template<bool IS_CONST> struct iterator_impl : public ft::iterator<ft::bidirectional_iterator_tag, value_type> 
+    {
+        //!! value type can obv be const or not
+        typedef typename ft::conditional<IS_CONST, const T, T>::type value_type;
 
         friend class list<T, Allocator>;
 
-        Iterator() : _node(nullptr) {}
-        Iterator(node_pointer node) : _node(node) {}
-        Iterator(const Iterator &other) : _node(other._node){} 
-        ~Iterator(){}
+        iterator_impl(node_pointer node) : _node(node) {}
+        iterator_impl(const iterator_impl &other) : _node(other._node){} 
+        ~iterator_impl(){}
 
         iterator &operator=(const iterator &other) {
             if (&other != this)
@@ -64,9 +60,9 @@ private :
             return *this;
         }
 
-        //reference and pointer are of the underlying type U
-        reference operator*(void) {return _node->get_data();}
-        pointer operator->(void) {return &(operator*());}
+
+        value_type& operator*(void) {return _node->get_data();}
+        value_type& operator->(void) {return &(operator*());}
 
         /**
          * Pre increment iterator
@@ -121,15 +117,14 @@ private :
         bool operator!=(const iterator& rhs) const {
             return (_node != rhs._node);
         }
+        
+        //implicit conversion from iterator to const_iterator
+        operator const_iterator () const { return const_iterator(_node) ; }
 
-        private:
-
+        private: 
             node_pointer _node;
 
-        
     };
-
-
 
     /*-----------------------Inner ListElement class--------------------------*/
 
@@ -299,7 +294,7 @@ public:
      * Returns const iterator to start of container
      */
     const_iterator begin() const {
-        return iterator(_head);
+        return const_iterator(_head);
     }
     
     /**
@@ -313,7 +308,7 @@ public:
      * Returns const iterator one past the end to start of container
      */
     const_iterator end() const {
-        return iterator(_past_end);
+        return const_iterator(_past_end);
     }
 
 
@@ -325,6 +320,13 @@ public:
         return reverse_iterator(_head);
     }
 
+    const_reverse_iterator rbegin() const {
+        return const_reverse_iterator(_past_end);
+    }
+
+    const_reverse_iterator rend() const {
+        return const_reverse_iterator(_head);
+    }
     /*-----------------------Capacity------------------------*/
     /**
      * //TODO: check with std::distance(begin(), end())
@@ -366,7 +368,7 @@ public:
      * Inserts value before pos;
      * @param value - value to add to the list
      */
-    iterator insert( iterator pos, const T& value ) {
+    iterator insert( const_iterator pos, const T& value ) {
         node_pointer to_insert = _node_allocator.allocate(1);
         if (pos._node) {
             _node_allocator.construct( to_insert, _Node( value, pos._node->get_prev(), pos._node, to_insert) );
@@ -384,6 +386,24 @@ public:
         }
         _count++; 
         return iterator(to_insert);
+    }
+    
+    /**
+     * Insert count copies of value before pos
+     * @param pos - iterator before with values have to be inserted
+     * @param count - number of values to inser
+     * @param value - value to insert
+     *
+     * @returns iterator to first inserted element
+     */
+    iterator insert( const_iterator pos, size_type count, const T& value ) {
+        if (count == 0) {
+            return iterator(pos._node);
+        }
+        (void) pos;
+        (void) count;
+        (void) value;
+        return nullptr;
     }
 
     /**

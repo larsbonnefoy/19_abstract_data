@@ -45,9 +45,9 @@ void assign( InputIt first, InputIt last );
 
 [ ] const_iterator end() const;
 
-[ ] reverse_iterator rbegin();
+[x] reverse_iterator rbegin();
 
-[ ] reverse_iterator rend();
+[x] reverse_iterator rend();
 
 [ ] const_reverse_iterator rbegin() const;
 
@@ -64,7 +64,7 @@ void assign( InputIt first, InputIt last );
 ### Modifiers
 [ ] void clear();
 
-[ ] iterator insert( const_iterator pos, const T& value );
+[x] iterator insert( const_iterator pos, const T& value );
 
 [ ] iterator insert( const_iterator pos, size_type count, const T& value );
 
